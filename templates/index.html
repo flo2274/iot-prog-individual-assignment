@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>IoT Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <h1>IoT Dashboard</h1>
+
+    <div class="latest">
+      <h2>Latest Data</h2>
+      {% if latest %}
+      <p><strong>Temperature:</strong> {{ latest[0] }} °C</p>
+      <p><strong>Humidity:</strong> {{ latest[1] }} %</p>
+      <p><strong>Light:</strong> {{ latest[2] }}</p>
+      <p><small>{{ latest[3] }}</small></p>
+      {% else %}
+      <p>No data yet!</p>
+      {% endif %}
+    </div>
+
+    <div class="history">
+      <h2>Last 10 Records</h2>
+      <table>
+        <tr>
+          <th>Timestamp</th>
+          <th>Temp (°C)</th>
+          <th>Humidity (%)</th>
+          <th>Light</th>
+        </tr>
+        {% for row in logs %}
+        <tr>
+          <td>{{ row[3] }}</td>
+          <td>{{ row[0] }}</td>
+          <td>{{ row[1] }}</td>
+          <td>{{ row[2] }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </body>
+</html>
