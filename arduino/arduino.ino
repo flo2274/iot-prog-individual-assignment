@@ -2,7 +2,7 @@
 #include <Servo.h>
 
 #define DHTPIN 2        // Pin where DHT is connected
-#define DHTTYPE DHT22   // Or DHT11
+#define DHTTYPE DHT11   // Or DHT11
 
 DHT dht(DHTPIN, DHTTYPE);
 Servo windowServo;
@@ -16,6 +16,7 @@ const int ledPin = 7;
 void setup() {
   Serial.begin(9600);
   dht.begin();
+  delay(2000);
   
   pinMode(motorPin, OUTPUT);
   pinMode(buzzerPin, OUTPUT);

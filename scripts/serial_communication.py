@@ -3,21 +3,20 @@ import pymysql
 import time
 
 # Configure Serial
-ser = serial.Serial('/dev/tty.', 9600, timeout=1) # Adjust the device path
+ser = serial.Serial('/dev/tty.usbmodem11301', 9600)
 time.sleep(2)  # Wait for Arduino to reset
 
-# Configure MariaDB Connection
 db = pymysql.connect(
     host="localhost",
-    user="youruser",
-    password="yourpassword",
+    user="iot_user",
+    password="Justtest1234!",
     database="iot_project"
 )
 
 cursor = db.cursor()
 
 def insert_into_db(temp, hum, light):
-    sql = "INSERT INTO environment_log (temperature, humidity, light_level) VALUES (%s, %s, %s)"
+    sql = "INSERT INTO sensor_data (temperature, humidity, light_level) VALUES (%s, %s, %s)"
     cursor.execute(sql, (temp, hum, light))
     db.commit()
 

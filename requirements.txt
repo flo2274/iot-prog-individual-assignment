@@ -1,3 +1,4 @@
 flask
 pymysql
-serial
+pyserial
+cryptography
