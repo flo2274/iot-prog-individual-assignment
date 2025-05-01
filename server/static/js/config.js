@@ -7,7 +7,7 @@ export const config = {
       CONNECT: "connect",
       DISCONNECT: "disconnect",
       CONNECT_ERROR: "connect_error",
-      SENSOR_UPDATE: "a", // Use 'a' as per the original example, change if needed
+      SENSOR_UPDATE: "sensor_update",
       SEND_COMMAND: "send_command",
       COMMAND_RESPONSE: "command_response",
     },

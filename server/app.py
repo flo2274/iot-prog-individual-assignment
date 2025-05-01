@@ -98,7 +98,7 @@ def read_from_arduino():
                              print(f"Database insert error: {db_err}")
 
                         # Daten an alle verbundenen Web-Clients senden
-                        socketio.emit('a', {
+                        socketio.emit('sensor_update', {
                             'temperature': temperature,
                             'humidity': humidity,
                             'light_level': light_level
