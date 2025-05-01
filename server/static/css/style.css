@@ -1,44 +1,94 @@
+/* style.css */
+
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
-  margin: 20px;
-  padding: 20px;
+  margin: 0;
+  font-family: "Segoe UI", Roboto, sans-serif;
+  background-color: #f4f6f8;
+  color: #1f2937;
 }
 
-h1,
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 2rem;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #111827;
+}
+
 h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #111827;
+}
+
+.dashboard-grid-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.card {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.sensor-value {
+  font-weight: bold;
+  color: #2563eb;
+}
+
+#connection-status {
+  margin-top: 1rem;
+  font-style: italic;
+  color: #6b7280;
+}
+
+button {
+  margin: 0.5rem 0.5rem 0.5rem 0;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #2563eb;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #1e40af;
+}
+
+button.off {
+  background-color: #e11d48;
+}
+
+button.off:hover {
+  background-color: #9f1239;
+}
+
+.mt-small {
+  margin-top: 1.5rem;
+}
+
+.history-link {
   text-align: center;
-  color: #333;
+  margin-top: 2rem;
 }
 
-.latest,
-.history {
-  background: white;
-  padding: 20px;
-  margin: 20px auto;
-  border-radius: 10px;
-  max-width: 600px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.history-link a {
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: 500;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 15px;
-}
-
-table,
-th,
-td {
-  border: 1px solid #ccc;
-}
-
-th,
-td {
-  padding: 8px;
-  text-align: center;
-}
-
-small {
-  color: gray;
+.history-link a:hover {
+  text-decoration: underline;
 }

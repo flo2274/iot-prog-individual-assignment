@@ -19,7 +19,7 @@ DATABASE_NAME = os.getenv('DB_NAME', 'iot_project') # Sicherstellen, dass DB exi
 # --- Flask & SocketIO Initialisierung ---
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'a_very_secret_key') # Wichtig für SocketIO
-socketio = SocketIO(app, async_mode=None)
+socketio = SocketIO(app, async_mode='threading')
 
 # --- Serielle Verbindung ---
 ser = None # Wird später initialisiert
@@ -199,8 +199,8 @@ if __name__ == '__main__':
        serial_thread = threading.Thread(target=read_from_arduino, daemon=True)
        serial_thread.start()
 
-
-    print("Starting Flask-SocketIO server...")
+    # printe diue URL
+    print("Flask-SocketIO server is running at: http://localhost:3002")
     socketio.run(app, host='localhost', port=3002, debug=True, use_reloader=False)
     # use_reloader=False ist wichtig, wenn Threads verwendet werden, um doppelte Ausführung zu vermeiden.
     # Debug=True ist für die Entwicklung hilfreich, im Produktivbetrieb auf False setzen.

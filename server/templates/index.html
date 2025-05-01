@@ -9,89 +9,58 @@
       href="{{ url_for('static', filename='css/style.css') }}"
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"></script>
-    <style>
-      body {
-        font-family: sans-serif;
-        padding: 20px;
-      }
-      .sensor-data {
-        margin-bottom: 20px;
-        border: 1px solid #ccc;
-        padding: 15px;
-        border-radius: 5px;
-        background-color: #f9f9f9;
-      }
-      .sensor-data h2 {
-        margin-top: 0;
-      }
-      .sensor-value {
-        font-weight: bold;
-        font-size: 1.2em;
-        color: #0056b3;
-      }
-      .controls button {
-        padding: 10px 15px;
-        margin: 5px;
-        cursor: pointer;
-        border: none;
-        border-radius: 4px;
-        background-color: #28a745;
-        color: white;
-      }
-      .controls button.off {
-        background-color: #dc3545;
-      }
-      .controls button:hover {
-        opacity: 0.9;
-      }
-      #connection-status {
-        margin-top: 15px;
-        font-style: italic;
-      }
-    </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
   </head>
   <body>
-    <h1>IoT Smart Home Steuerung</h1>
+    <div class="container">
+      <h1>IoT Smart Home Steuerung</h1>
 
-    <div class="sensor-data">
-      <h2>Live Sensorwerte</h2>
-      <p>
-        Temperatur: <span id="temperature" class="sensor-value">--</span> °C
+      <div class="dashboard-grid-layout">
+        <div>
+          <div class="card sensor-data">
+            <h2>Live Sensorwerte</h2>
+            <p>
+              Temperatur:
+              <span id="temperature" class="sensor-value">--</span> °C
+            </p>
+            <p>
+              Luftfeuchtigkeit:
+              <span id="humidity" class="sensor-value">--</span> %
+            </p>
+            <p>Lichtlevel: <span id="light" class="sensor-value">--</span></p>
+            <p id="connection-status">Verbinde mit Server...</p>
+          </div>
+
+          <div class="card controls mt-small">
+            <h2>Steuerung</h2>
+            <div>
+              <button data-command="MOTOR_ON">Motor AN</button>
+              <button data-command="MOTOR_OFF" class="off">Motor AUS</button>
+            </div>
+            <div>
+              <button data-command="SERVO_CLOSE">Servo Close</button>
+              <button data-command="SERVO_OPEN" class="off">Servo Open</button>
+            </div>
+            <div>
+              <button data-command="LED_ON">LED AN</button>
+              <button data-command="LED_OFF" class="off">LED AUS</button>
+            </div>
+            <div>
+              <button data-command="BUZZER_ON">Buzzer AN</button>
+              <button data-command="BUZZER_OFF" class="off">Buzzer AUS</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="sensorDashboardChartsContainer" class="card">
+          <h2>Sensor Verlauf (Live)</h2>
+        </div>
+      </div>
+
+      <p class="history-link">
+        <a href="/history">Zeige Verlaufsdaten (Historie)</a>
       </p>
-      <p>
-        Luftfeuchtigkeit: <span id="humidity" class="sensor-value">--</span> %
-      </p>
-      <p>Lichtlevel: <span id="light" class="sensor-value">--</span></p>
-      <p id="connection-status">Verbinde mit Server...</p>
     </div>
-
-    <div class="controls">
-      <h2>Steuerung</h2>
-      <div>
-        <button data-command="MOTOR_ON">Motor AN</button>
-        <button data-command="MOTOR_OFF" class="off">Motor AUS</button>
-      </div>
-      <div>
-        <button data-command="SERVO_CLOSE">Servo Close</button>
-        <button data-command="SERVO_OPEN" class="off">Servo Open</button>
-      </div>
-      <div>
-        <button data-command="LED_ON">LED AN</button>
-        <button data-command="LED_OFF" class="off">LED AUS</button>
-      </div>
-      <div>
-        <button data-command="BUZZER_ON">Buzzer AN</button>
-        <button data-command="BUZZER_OFF" class="off">Buzzer AUS</button>
-      </div>
-      <div>
-        <button data-command="SERVO_OPEN">Fenster ÖFFNEN</button>
-        <button data-command="SERVO_CLOSE" class="off">
-          Fenster SCHLIESSEN
-        </button>
-      </div>
-    </div>
-
-    <p><a href="/history">Zeige Verlaufsdaten</a></p>
 
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
   </body>
