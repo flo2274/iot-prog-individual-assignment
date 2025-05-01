@@ -12,9 +12,22 @@
     <script src="https://d3js.org/d3.v7.min.js"></script>
   </head>
   <body>
-    <div class="container">
-      <h1>IoT Smart Home Steuerung</h1>
+    <header class="site-header">
+      <div class="container header-content">
+        <img
+          src="{{ url_for('static', filename='images/logo.png') }}"
+          alt="IoT Dashboard Logo"
+          class="site-logo"
+        />
+        <nav>
+          <a href="/">Home</a>
+          <a href="/history">Historie</a>
+          <a href="/about">Über</a>
+        </nav>
+      </div>
+    </header>
 
+    <div class="container">
       <div class="dashboard-grid-layout">
         <div>
           <div class="card sensor-data">
@@ -54,6 +67,9 @@
 
         <div id="sensorDashboardChartsContainer" class="card">
           <h2>Sensor Verlauf (Live)</h2>
+          <div class="charts-flex-container">
+            <!-- D3 wird hier die Charts reinschreiben -->
+          </div>
         </div>
       </div>
 
@@ -61,6 +77,12 @@
         <a href="/history">Zeige Verlaufsdaten (Historie)</a>
       </p>
     </div>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; 2023 IoT Smart Home Dashboard</p>
+      </div>
+    </footer>
 
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
   </body>

@@ -91,7 +91,9 @@ if (isIndexPage) {
     let lightData = [];
 
     // Container auswählen
-    const dashboardChartsD3 = d3.select(dashboardChartContainer);
+    const dashboardChartsD3 = d3.select(
+      "#sensorDashboardChartsContainer .charts-flex-container"
+    );
     dashboardChartsD3
       .style("display", "flex")
       .style("flex-wrap", "wrap")
@@ -264,14 +266,7 @@ if (isIndexPage) {
       // Domains der Skalen basierend auf den aktuellen Daten aktualisieren
       // Stelle sicher, dass Daten vorhanden sind, bevor die Domains gesetzt werden
       if (tempData.length > 0) {
-        xScale.domain(d3.extent(tempData, (d) => d.date)); // X-Achse (Zeit) ist gleich für alle
-        yScaleTemp.domain(d3.extent(tempData, (d) => d.value));
-      }
-      if (humData.length > 0) {
-        yScaleHum.domain(d3.extent(humData, (d) => d.value));
-      }
-      if (lightData.length > 0) {
-        yScaleLight.domain(d3.extent(lightData, (d) => d.value));
+        xScale.domain(d3.extent(tempData, (d) => d.date)); // X-Achse (Zeit) ist gleich für all
       }
 
       // Achsen neu zeichnen (mit Übergang für sanftere Bewegung)
