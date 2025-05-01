@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -21,7 +21,7 @@
         />
         <nav>
           <a href="/">Home</a>
-          <a href="/history">Historie</a>
+          <a href="/history">History</a>
           <a href="/about">Routines</a>
         </nav>
       </div>
@@ -31,50 +31,50 @@
       <div class="dashboard-grid-layout">
         <div>
           <div class="card sensor-data">
-            <h2>Live Sensorwerte</h2>
+            <h2>Live Sensor Values</h2>
             <p>
-              Temperatur:
+              Temperature:
               <span id="temperature" class="sensor-value">--</span> °C
             </p>
             <p>
-              Luftfeuchtigkeit:
+              Humidity:
               <span id="humidity" class="sensor-value">--</span> %
             </p>
-            <p>Lichtlevel: <span id="light" class="sensor-value">--</span></p>
-            <p id="connection-status">Verbinde mit Server...</p>
+            <p>Light Level: <span id="light" class="sensor-value">--</span></p>
+            <p id="connection-status">Connecting to server...</p>
           </div>
 
           <div class="card controls mt-small">
-            <h2>Steuerung</h2>
+            <h2>Controls</h2>
             <div>
-              <button data-command="MOTOR_ON">Motor AN</button>
-              <button data-command="MOTOR_OFF" class="off">Motor AUS</button>
+              <button data-command="MOTOR_ON">Motor ON</button>
+              <button data-command="MOTOR_OFF" class="off">Motor OFF</button>
             </div>
             <div>
               <button data-command="SERVO_CLOSE">Servo Close</button>
               <button data-command="SERVO_OPEN" class="off">Servo Open</button>
             </div>
             <div>
-              <button data-command="LED_ON">LED AN</button>
-              <button data-command="LED_OFF" class="off">LED AUS</button>
+              <button data-command="LED_ON">LED ON</button>
+              <button data-command="LED_OFF" class="off">LED OFF</button>
             </div>
             <div>
-              <button data-command="BUZZER_ON">Buzzer AN</button>
-              <button data-command="BUZZER_OFF" class="off">Buzzer AUS</button>
+              <button data-command="BUZZER_ON">Buzzer ON</button>
+              <button data-command="BUZZER_OFF" class="off">Buzzer OFF</button>
             </div>
           </div>
         </div>
 
         <div id="sensorDashboardChartsContainer" class="card">
-          <h2>Sensor Verlauf (Live)</h2>
+          <h2>Sensor History (Live)</h2>
           <div class="charts-flex-container">
-            <!-- D3 wird hier die Charts reinschreiben -->
+            <!-- D3 will render the charts here -->
           </div>
         </div>
       </div>
 
       <p class="history-link">
-        <a href="/history">Zeige Verlaufsdaten (Historie)</a>
+        <a href="/history">Show historical data (History)</a>
       </p>
     </div>
 

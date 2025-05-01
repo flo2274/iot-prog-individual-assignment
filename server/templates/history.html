@@ -8,8 +8,7 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/style.css') }}"
     />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
     <style>
       body {
         font-family: sans-serif;
@@ -26,9 +25,16 @@
     <p><a href="/">Zurück zum Dashboard</a></p>
 
     <div class="chart-container">
-      <canvas id="sensorHistoryChart"></canvas>
+      <div id="sensorHistoryChart"></div>
     </div>
 
-    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    <script
+      src="{{ url_for('static', filename='js/historyChart.js') }}"
+      type="module"
+    ></script>
+    <script
+      src="{{ url_for('static', filename='js/app.js') }}"
+      type="module"
+    ></script>
   </body>
 </html>
