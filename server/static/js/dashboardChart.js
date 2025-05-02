@@ -18,7 +18,7 @@ function setupChartDimensions() {
     15; // Extra padding/gap adjustment
 
   // Ensure minimum width
-  chartWidth = Math.max(chartWidth, 150); // Minimum sensible width
+  chartWidth = Math.max(chartWidth, 250); // Minimum sensible width
 
   innerChartWidth =
     chartWidth - config.chart.margin.left - config.chart.margin.right;
