@@ -126,11 +126,11 @@ button:hover {
 }
 
 button.off {
-  background-color: #e11d48;
+  background-color: #00779e;
 }
 
 button.off:hover {
-  background-color: #9f1239;
+  background-color: #01597c;
 }
 
 .mt-small {
@@ -195,13 +195,14 @@ button.off:hover {
 }
 
 #current-actuator {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: bold;
+  color: #2563eb;
   transition: color 0.3s ease;
 }
 
 #current-actuator-source {
-  font-size: 0.8rem;
+  font-size: 1rem;
   color: gray;
 }
 

@@ -84,7 +84,22 @@ const actuatorSource = document.getElementById("current-actuator-source");
 
 // Funktion, die den Status ändert und die Animationen auslöst
 export function updateActuatorStatus(status, source) {
-  actuatorStatus.textContent = status;
+  //if status includes "LED" then set text to LED and then if status also includes "ON" then add turned on
+  if (status.includes("LED")) {
+    actuatorStatus.textContent = status.includes("ON")
+      ? "LED eingeschaltet"
+      : "LED ausgeschaltet";
+  }
+  if (status.includes("BUZZER")) {
+    actuatorStatus.textContent = status.includes("ON")
+      ? "Buzzer eingeschaltet"
+      : "Buzzer ausgeschaltet";
+  }
+  if (status.includes("SERVO")) {
+    actuatorStatus.textContent = status.includes("OPEN")
+      ? "Window Opened"
+      : "Window Closed";
+  }
   actuatorSource.textContent = source;
 
   // Animation aktivieren
