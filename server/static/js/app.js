@@ -107,3 +107,20 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 });
+
+function animateCard(cardElement, status) {
+  const successClass = "flash-success";
+  const errorClass = "flash-error";
+
+  cardElement.classList.remove(successClass, errorClass);
+
+  if (status === "success") {
+    cardElement.classList.add(successClass);
+  } else {
+    cardElement.classList.add(errorClass);
+  }
+
+  setTimeout(() => {
+    cardElement.classList.remove(successClass, errorClass);
+  }, 800);
+}

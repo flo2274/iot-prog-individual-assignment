@@ -78,22 +78,20 @@ uiElements.currentActuatorSource = document.getElementById(
   "current-actuator-source"
 );
 
-export function updateActuatorStatus(actuator, source) {
-  const actuatorElement = uiElements.currentActuator;
-  const sourceElement = uiElements.currentActuatorSource;
+const actuatorStatusCard = document.querySelector(".actuator-status");
+const actuatorStatus = document.getElementById("current-actuator");
+const actuatorSource = document.getElementById("current-actuator-source");
 
-  if (actuatorElement) {
-    actuatorElement.textContent = actuator || "--";
-    actuatorElement.style.transition = "background-color 0.5s";
-    actuatorElement.style.backgroundColor = "#d1ffd1"; // hellgrün als Feedback
+// Funktion, die den Status ändert und die Animationen auslöst
+export function updateActuatorStatus(status, source) {
+  actuatorStatus.textContent = status;
+  actuatorSource.textContent = source;
 
-    setTimeout(() => {
-      actuatorElement.style.backgroundColor = "transparent";
-    }, 500);
-  }
+  // Animation aktivieren
+  actuatorStatusCard.classList.add("active");
 
-  if (sourceElement) {
-    sourceElement.textContent =
-      source === "routine" ? "von Routine" : "von Button";
-  }
+  // Nach einer Sekunde Animation entfernen (optional)
+  setTimeout(() => {
+    actuatorStatusCard.classList.remove("active");
+  }, 1000); // Dauer der Animation
 }
