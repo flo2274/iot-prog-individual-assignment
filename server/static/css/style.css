@@ -68,7 +68,7 @@ h2 {
 
 .dashboard-grid-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.3fr 1.4fr;
   gap: 2rem;
 }
 
@@ -77,6 +77,24 @@ h2 {
   padding: 1.5rem;
   border-radius: 1rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.left-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.top-row {
+  display: flex;
+  gap: 1rem; /* Abstand zwischen den Cards */
+}
+
+.top-row .card {
+  flex: 1; /* beide Cards gleich breit */
+}
+
+.card.controls {
+  margin-top: 1rem; /* Abstand nach den oberen zwei Cards */
 }
 
 .sensor-value {

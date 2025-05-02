@@ -29,22 +29,29 @@
 
     <div class="container">
       <div class="dashboard-grid-layout">
-        <div>
-          <div class="card sensor-data">
-            <h2>Live Sensor Values</h2>
-            <p>
-              Temperature:
-              <span id="temperature" class="sensor-value">--</span>
-            </p>
-            <p>
-              Humidity:
-              <span id="humidity" class="sensor-value">--</span>
-            </p>
-            <p>Light Level: <span id="light" class="sensor-value">--</span></p>
-            <p id="connection-status">Connecting to server...</p>
+        <div class="left-column">
+          <div class="top-row">
+            <div class="card sensor-data">
+              <h2>Live Sensor Values</h2>
+              <p>
+                Temperature:
+                <span id="temperature" class="sensor-value">--</span>
+              </p>
+              <p>
+                Humidity: <span id="humidity" class="sensor-value">--</span>
+              </p>
+              <p>
+                Light Level: <span id="light" class="sensor-value">--</span>
+              </p>
+              <p id="connection-status">Connecting to server...</p>
+            </div>
+            <div class="card actuator-status">
+              <h2>Aktueller Aktuator</h2>
+              <p id="current-actuator">--</p>
+            </div>
           </div>
 
-          <div class="card controls mt-small">
+          <div class="card controls">
             <h2>Controls</h2>
             <div>
               <button data-command="SERVO_CLOSE">Servo Close</button>
