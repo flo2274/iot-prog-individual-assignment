@@ -7,6 +7,7 @@ import {
   showCommandFeedback,
   getElement,
   getDashboardChartContainer,
+  updateActuatorStatus,
 } from "./uiUpdater.js";
 import {
   initializeCharts,
@@ -76,6 +77,11 @@ document.addEventListener("DOMContentLoaded", () => {
     socketManager.on(config.socket.events.COMMAND_RESPONSE, (data) => {
       console.log("Command response received:", data);
       showCommandFeedback(data);
+
+      // Update Aktuator-Anzeige
+      const actuatorName = data.command; // z. B. "LED_ON"
+      const source = data.source || "button"; // Default: button
+      updateActuatorStatus(actuatorName, source);
     });
 
     // 5. Setup Control Button Listeners

@@ -72,3 +72,28 @@ export function getElement(key) {
 export function getDashboardChartContainer() {
   return uiElements.dashboardChartContainer;
 }
+
+uiElements.currentActuator = document.getElementById("current-actuator");
+uiElements.currentActuatorSource = document.getElementById(
+  "current-actuator-source"
+);
+
+export function updateActuatorStatus(actuator, source) {
+  const actuatorElement = uiElements.currentActuator;
+  const sourceElement = uiElements.currentActuatorSource;
+
+  if (actuatorElement) {
+    actuatorElement.textContent = actuator || "--";
+    actuatorElement.style.transition = "background-color 0.5s";
+    actuatorElement.style.backgroundColor = "#d1ffd1"; // hellgrün als Feedback
+
+    setTimeout(() => {
+      actuatorElement.style.backgroundColor = "transparent";
+    }, 500);
+  }
+
+  if (sourceElement) {
+    sourceElement.textContent =
+      source === "routine" ? "von Routine" : "von Button";
+  }
+}

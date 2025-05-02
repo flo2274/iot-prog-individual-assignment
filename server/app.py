@@ -202,8 +202,23 @@ def send_command_to_arduino(command):
             with serial_lock:
                 ser.write(f"{command}\n".encode('utf-8'))
             print(f"Auto command sent: {command}")
+
+            # Sende Erfolgsmeldung an den Client
+            socketio.emit('command_response', {
+                'command': command,
+                'status': 'success',
+                'source': 'routine'
+            })
+
         except Exception as e:
             print(f"Error sending AUTO command '{command}': {e}")
+            # Sende Fehlermeldung an den Client
+            socketio.emit('command_response', {
+                'command': command,
+                'status': 'error',
+                'message': str(e),
+                'source': 'routine'
+            })
 
 if __name__ == '__main__':
     if initialize_serial():
