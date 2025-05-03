@@ -106,6 +106,10 @@ def index():
 def history():
     return render_template('history.html')
 
+@app.route('/routine')
+def routine():
+    return render_template('routine.html')
+
 @app.route('/api/history')
 def api_history():
     try:
@@ -148,8 +152,8 @@ def handle_command(data):
 
 # --- Automatik-Schwellenwerte ---
 LIGHT_THRESHOLD = 3
-HUMIDITY_LOW_THRESHOLD = 40
-HUMIDITY_HIGH_THRESHOLD = 70
+HUMIDITY_LOW_THRESHOLD = 50
+HUMIDITY_HIGH_THRESHOLD = 60
 TEMPERATURE_HIGH_THRESHOLD = 28
 
 # --- Override-Flags ---

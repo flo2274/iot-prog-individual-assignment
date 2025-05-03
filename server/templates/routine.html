@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>System Routinen Übersicht - Ihre Smart Home Steuerung</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-content">
+        <img
+          src="{{ url_for('static', filename='images/logo.png') }}"
+          alt="IoT Dashboard Logo"
+          class="site-logo"
+        />
+        <nav>
+          <a href="/">Dashboard</a>
+          <a href="/history">History</a>
+          <a href="/routine">Routine</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="container">
+      <h1>System Routinen Übersicht</h1>
+      <section class="card-section">
+        <h2><i class="icon">📊</i> Automatik-Schwellenwerte</h2>
+        <div class="card-grid">
+          <div class="card threshold-card">
+            <h3>Licht (unter)</h3>
+            <p class="value">3</p>
+            {# Entnommen aus LIGHT_THRESHOLD = 3 #}
+          </div>
+          <div class="card threshold-card">
+            <h3>Feuchtigkeit (unter)</h3>
+            <p class="value">50</p>
+            {# Entnommen aus HUMIDITY_LOW_THRESHOLD = 50 #}
+          </div>
+          <div class="card threshold-card">
+            <h3>Feuchtigkeit (über)</h3>
+            <p class="value">60</p>
+            {# Entnommen aus HUMIDITY_HIGH_THRESHOLD = 60 #}
+          </div>
+          <div class="card threshold-card">
+            <h3>Temperatur (über)</h3>
+            <p class="value">28</p>
+            {# Entnommen aus TEMPERATURE_HIGH_THRESHOLD = 28 #}
+          </div>
+        </div>
+      </section>
+
+      <section class="card-section">
+        <h2><i class="icon">🤖</i> Automatik-Logik</h2>
+        <div class="card-grid">
+          <div class="card logic-card">
+            <h3>Gerät: LED</h3>
+            <p><strong>Bedingung:</strong> Lichtlevel ist unter 3 Lux</p>
+            {# Entnommen aus light < LIGHT_THRESHOLD #}
+            <p><strong>Aktion:</strong> LED einschalten, sonst ausschalten</p>
+            {# Entnommen aus led_state Logic #}
+          </div>
+          <div class="card logic-card">
+            <h3>Gerät: Fenster</h3>
+            <p>
+              <strong>Bedingung:</strong> Feuchtigkeit ist unter 50% oder über
+              60%
+            </p>
+            {# Entnommen aus hum < HUMIDITY_LOW_THRESHOLD or hum >
+            HUMIDITY_HIGH_THRESHOLD #}
+            <p><strong>Aktion:</strong> Fenster öffnen, sonst schließen</p>
+            {# Entnommen aus window_state Logic #}
+          </div>
+          <div class="card logic-card">
+            <h3>Gerät: Buzzer</h3>
+            <p><strong>Bedingung:</strong> Temperatur ist über 28°C</p>
+            {# Entnommen aus temp > TEMPERATURE_HIGH_THRESHOLD #}
+            <p>
+              <strong>Aktion:</strong> Buzzer einschalten, sonst ausschalten
+            </p>
+            {# Entnommen aus buzzer_state Logic #}
+          </div>
+        </div>
+      </section>
+
+      <section class="card-section">
+        <h2><i class="icon">✋</i> Manueller Override Status</h2>
+        <p>
+          Der Status unten zeigt den aktuellen Override-Status der Geräte an.
+        </p>
+        <div class="card-grid">
+          <div class="card override-card active">
+            <h3>LED</h3>
+            <p class="status">Active</p>
+          </div>
+          <div class="card override-card inactive">
+            <h3>Fenster</h3>
+            <p class="status">Inactive</p>
+          </div>
+          <div class="card override-card inactive">
+            <h3>Buzzer</h3>
+            <p class="status">Inactive</p>
+          </div>
+          {# Fügen Sie hier die tatsächlichen Override-Status basierend auf
+          Ihrer Logik ein #}
+        </div>
+      </section>
+    </div>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; 2023 Ihr Firmenname. Alle Rechte vorbehalten.</p>
+      </div>
+    </footer>
+  </body>
+</html>

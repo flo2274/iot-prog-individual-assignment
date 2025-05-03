@@ -21,7 +21,20 @@
     </style>
   </head>
   <body>
-    <h1>Sensor Datenverlauf</h1>
+    <header class="site-header">
+      <div class="container header-content">
+        <img
+          src="{{ url_for('static', filename='images/logo.png') }}"
+          alt="IoT Dashboard Logo"
+          class="site-logo"
+        />
+        <nav>
+          <a href="/">Dashboard</a>
+          <a href="/history">History</a>
+          <a href="/routine">Routine</a>
+        </nav>
+      </div>
+    </header>
     <p><a href="/">Zurück zum Dashboard</a></p>
 
     <div class="chart-container">
