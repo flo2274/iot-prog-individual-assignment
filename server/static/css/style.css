@@ -201,7 +201,7 @@ button.off:hover {
   transition: color 0.3s ease;
 }
 
-#current-actuator-source {
+#current-actuator-mode {
   font-size: 1rem;
   color: gray;
 }
@@ -245,18 +245,17 @@ button.off:hover {
 }
 
 .card-section h2 {
-    margin-bottom: 1.2rem; /* Abstand unter dem Titel des Abschnitts */
-    display: flex; /* Erlaubt das Icon neben dem Text */
-    align-items: center;
+  margin-bottom: 1.2rem; /* Abstand unter dem Titel des Abschnitts */
+  display: flex; /* Erlaubt das Icon neben dem Text */
+  align-items: center;
 }
 
 /* Stil für die Text-Icons neben den Abschnittstiteln */
 .card-section h2 .icon {
-    margin-right: 0.75rem; /* Abstand zwischen Icon und Text */
-    font-size: 1.8rem; /* Größeres Icon */
-    color: #2563eb; /* Farbe anpassen, falls gewünscht */
+  margin-right: 0.75rem; /* Abstand zwischen Icon und Text */
+  font-size: 1.8rem; /* Größeres Icon */
+  color: #2563eb; /* Farbe anpassen, falls gewünscht */
 }
-
 
 /* Grid-Layout für die Karten innerhalb jedes Abschnitts */
 .card-grid {
@@ -269,63 +268,408 @@ button.off:hover {
 
 /* Spezifische Anpassungen für Kartentypen (nutzen den Basis-Card-Stil) */
 .threshold-card .value {
-    font-size: 2rem; /* Größerer Wert für Schwellenwerte */
-    font-weight: bold;
-    color: #059669; /* Grüne Farbe für positive Werte */
-    margin-top: 0.7rem;
-    text-align: center; /* Zentriert den Wert */
+  font-size: 2rem; /* Größerer Wert für Schwellenwerte */
+  font-weight: bold;
+  color: #059669; /* Grüne Farbe für positive Werte */
+  margin-top: 0.7rem;
+  text-align: center; /* Zentriert den Wert */
 }
 
 .logic-card p {
-    margin-bottom: 0.5rem; /* Abstand zwischen den Logik-Zeilen */
-    line-height: 1.4; /* Bessere Lesbarkeit */
-    color: #374151;
+  margin-bottom: 0.5rem; /* Abstand zwischen den Logik-Zeilen */
+  line-height: 1.4; /* Bessere Lesbarkeit */
+  color: #374151;
 }
 
 .logic-card p strong {
-    color: #111827; /* Dunkler für die Labels */
+  color: #111827; /* Dunkler für die Labels */
 }
 
 /* Stile für die Override-Karten */
 .override-card {
-    text-align: center; /* Inhalt zentrieren */
-    padding: 1.2rem; /* Etwas weniger Padding als Standard-Card */
-    /* Standardmäßig keine besondere Umrandung */
-    border: 2px solid transparent; /* Unsichtbare Umrandung zur Platzhalterung */
-    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Sanfte Übergänge */
+  text-align: center; /* Inhalt zentrieren */
+  padding: 1.2rem; /* Etwas weniger Padding als Standard-Card */
+  /* Standardmäßig keine besondere Umrandung */
+  border: 2px solid transparent; /* Unsichtbare Umrandung zur Platzhalterung */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Sanfte Übergänge */
 }
 
 .override-card h3 {
-    margin-bottom: 0.5rem; /* Kleinerer Abstand zum Status */
-    font-size: 1.1rem;
+  margin-bottom: 0.5rem; /* Kleinerer Abstand zum Status */
+  font-size: 1.1rem;
 }
 
 .override-card .status {
-    font-weight: bold;
-    font-size: 1.1rem;
-    margin-top: 0.5rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
 }
 
 /* Stil für aktive Override-Karten */
 .override-card.active {
   border-color: #10b981; /* Grüner Rahmen */
-  /* background-color: #ecfdf5; /* Sehr helles Grün als Hintergrund (optional) */ */
-  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.15); /* Dezenter grüner Schatten */
+  /* background-color: #ecfdf5; /* Sehr helles Grün als Hintergrund (optional) */
 }
 
 .override-card.active .status {
-    color: #059669; /* Dunkleres Grün für den Text */
+  color: #059669; /* Dunkleres Grün für den Text */
 }
 
 /* Stil für inaktive Override-Karten */
 .override-card.inactive {
   border-color: #d1d5db; /* Grauer Rahmen */
-  /* background-color: #f9fafb; /* Sehr helles Grau als Hintergrund (optional) */ */
-  box-shadow: none; /* Kein Schatten */
+  /* background-color: #f9fafb; /* Sehr helles Grau als Hintergrund (optional) */
 }
 
 .override-card.inactive .status {
-    color: #6b7280; /* Grauer Text */
+  color: #6b7280; /* Grauer Text */
 }
 
 /* --- Ende Zusätzliche Styles für die System Routines Overview Page --- */
+/* Header */
+.site-header {
+  background-color: white;
+  color: #111827;
+  padding: 0.5rem 0; /* reduziert Höhe */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.site-header .header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-logo {
+  height: 10;
+  max-width: 200px; /* verhindert Überlauf bei kleineren Bildschirmen */
+  object-fit: contain;
+}
+
+.site-header nav a {
+  color: black;
+  margin-left: 1rem;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.site-header nav a:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+.site-footer {
+  background-color: white;
+  color: #111827;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 3rem;
+  font-size: 0.9rem;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, sans-serif;
+  background-color: #f4f6f8;
+  color: #1f2937;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 2rem;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #111827;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #111827;
+}
+
+.dashboard-grid-layout {
+  display: grid;
+  grid-template-columns: 1.3fr 1.4fr;
+  gap: 2rem;
+}
+
+.card {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.left-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.top-row {
+  display: flex;
+  gap: 1rem; /* Abstand zwischen den Cards */
+}
+
+.top-row .card {
+  flex: 1; /* beide Cards gleich breit */
+}
+
+.card.controls {
+  margin-top: 1rem; /* Abstand nach den oberen zwei Cards */
+}
+
+.sensor-value {
+  font-weight: bold;
+  color: #2563eb;
+}
+
+#connection-status {
+  margin-top: 1rem;
+  font-style: italic;
+  color: #6b7280;
+}
+
+button {
+  margin: 0.5rem 0.5rem 0.5rem 0;
+  padding: 0.75rem 1.5rem;
+  width: 40%;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #2563eb;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #1e40af;
+}
+
+button.off {
+  background-color: #00779e;
+}
+
+button.off:hover {
+  background-color: #01597c;
+}
+
+.mt-small {
+  margin-top: 1.5rem;
+}
+
+.history-link {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.history-link a {
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: 500;
+}
+
+.history-link a:hover {
+  text-decoration: underline;
+}
+
+/* Neuer Flex-Container für Charts */
+.charts-flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+/* Einzelne Chart-Boxen */
+.dashboard-chart {
+  flex: 1 1 calc(33% - 1rem); /* drei Charts nebeneinander, mit Platz dazwischen */
+  min-width: 200px;
+  background-color: #f9fafb;
+  padding: 0.5rem;
+  border-radius: 0.75rem;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.chart-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #374151;
+}
+
+/* Grundstil für die Card */
+.card.actuator-status {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card.actuator-status.active {
+  animation: glow 1s infinite alternate, shake 0.5s ease;
+}
+
+.card.actuator-status h2 {
+  margin-bottom: 10px;
+}
+
+#current-actuator {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #2563eb;
+  transition: color 0.3s ease;
+}
+
+#current-actuator-mode {
+  font-size: 1rem;
+  color: gray;
+}
+
+/* Leuchteffekt */
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px #ffcc00, 0 0 10px #ffcc00, 0 0 15px #ffcc00;
+    color: #ffcc00;
+  }
+  100% {
+    box-shadow: 0 0 10px #ff6600, 0 0 20px #ff6600, 0 0 30px #ff6600;
+    color: #ff6600;
+  }
+}
+
+/* Wackel-Animation */
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-10px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  75% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* --- Zusätzliche Styles für die System Routines Overview Page (basierend auf bereitgestellter HTML) --- */
+
+/* Abstand zwischen den Abschnitten wie "Automatik-Schwellenwerte" */
+.card-section {
+  margin-top: 2.5rem; /* Mehr Abstand über einem neuen Abschnitt */
+}
+
+.card-section h2 {
+  margin-bottom: 1.2rem; /* Abstand unter dem Titel des Abschnitts */
+  display: flex; /* Erlaubt das Icon neben dem Text */
+  align-items: center;
+}
+
+/* Stil für die Text-Icons neben den Abschnittstiteln */
+.card-section h2 .icon {
+  margin-right: 0.75rem; /* Abstand zwischen Icon und Text */
+  font-size: 1.8rem; /* Größeres Icon */
+  color: #2563eb; /* Farbe anpassen, falls gewünscht */
+}
+
+/* Grid-Layout für die Karten innerhalb jedes Abschnitts */
+.card-grid {
+  display: grid;
+  /* Eine responsive Grid-Vorlage: erstellt Spalten, die sich automatisch anpassen.
+     Jede Spalte ist mindestens 220px breit, aber nicht breiter als 1fr (gleicher Teil des verfügbaren Platzes). */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem; /* Abstand zwischen den Karten im Grid */
+}
+
+/* Spezifische Anpassungen für Kartentypen (nutzen den Basis-Card-Stil) */
+.threshold-card .value {
+  font-size: 2rem; /* Größerer Wert für Schwellenwerte */
+  font-weight: bold;
+  color: #059669; /* Grüne Farbe für positive Werte */
+  margin-top: 0.7rem;
+  text-align: center; /* Zentriert den Wert */
+}
+
+.logic-card p {
+  margin-bottom: 0.5rem; /* Abstand zwischen den Logik-Zeilen */
+  line-height: 1.4; /* Bessere Lesbarkeit */
+  color: #374151;
+}
+
+.logic-card p strong {
+  color: #111827; /* Dunkler für die Labels */
+}
+
+/* Stile für die Override-Karten */
+.override-card {
+  text-align: center; /* Inhalt zentrieren */
+  padding: 1.2rem; /* Etwas weniger Padding als Standard-Card */
+  /* Standardmäßig keine besondere Umrandung */
+  border: 2px solid transparent; /* Unsichtbare Umrandung zur Platzhalterung */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Sanfte Übergänge */
+}
+
+.override-card h3 {
+  margin-bottom: 0.5rem; /* Kleinerer Abstand zum Status */
+  font-size: 1.1rem;
+}
+
+.override-card .status {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+/* Stil für aktive Override-Karten */
+.override-card.active {
+  border-color: #10b981; /* Grüner Rahmen */
+  /* background-color: #ecfdf5; /* Sehr helles Grün als Hintergrund (optional) */
+  /* box shadow*/
+}
+
+.override-card.active .status {
+  color: #059669; /* Dunkleres Grün für den Text */
+}
+
+/* Stil für inaktive Override-Karten */
+.override-card.inactive {
+  border-color: #d1d5db; /* Grauer Rahmen */
+  /* background-color: #f9fafb; /* Sehr helles Grau als Hintergrund (optional) */
+}
+
+.override-card.inactive .status {
+  color: #6b7280; /* Grauer Text */
+}
+
+/* --- Ende Zusätzliche Styles für die System Routines Overview Page --- */
+.control-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.control-group button {
+  margin-right: 5px;
+}
+
+.status-card {
+  padding: 5px 10px;
+  border: 2px solid gray;
+  border-radius: 5px;
+  min-width: 150px;
+  text-align: center;
+  margin-right: 10px;
+}

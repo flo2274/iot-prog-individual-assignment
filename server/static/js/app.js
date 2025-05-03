@@ -8,6 +8,7 @@ import {
   getElement,
   getDashboardChartContainer,
   updateActuatorStatus,
+  updateSingleActuatorCard,
 } from "./uiUpdater.js";
 import {
   initializeCharts,
@@ -80,8 +81,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Update Aktuator-Anzeige
       const actuatorName = data.command; // z. B. "LED_ON"
-      const source = data.source || "button"; // Default: button
-      updateActuatorStatus(actuatorName, source);
+      const mode = data.source || "button"; // Default: button
+      updateActuatorStatus(actuatorName, mode);
+
+      if (actuatorName.startsWith("LED")) {
+        updateSingleActuatorCard(
+          "led",
+          actuatorName.includes("ON") ? "ON" : "OFF"
+        );
+      } else if (actuatorName.startsWith("BUZZER")) {
+        updateSingleActuatorCard(
+          "buzzer",
+          actuatorName.includes("ON") ? "ON" : "OFF"
+        );
+      } else if (actuatorName.startsWith("SERVO")) {
+        updateSingleActuatorCard(
+          "servo",
+          actuatorName.includes("OPEN") ? "OPEN" : "CLOSE"
+        );
+      }
     });
 
     // 5. Setup Control Button Listeners

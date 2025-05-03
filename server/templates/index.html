@@ -48,23 +48,34 @@
             <div class="card actuator-status">
               <h2>Aktuator Status</h2>
               <p id="current-actuator">--</p>
-              <p id="current-actuator-source">--</p>
+              <p id="current-actuator-mode">--</p>
             </div>
           </div>
 
           <div class="card controls">
             <h2>Controls</h2>
-            <div>
-              <button data-command="SERVO_CLOSE">Servo Close</button>
-              <button data-command="SERVO_OPEN" class="off">Servo Open</button>
+
+            <div class="control-group">
+              <div class="status-card" id="servo-status">Window is Closed</div>
+              <button data-command="SERVO_CLOSE">CLOSE</button>
+              <button data-command="SERVO_OPEN">OPEN</button>
             </div>
-            <div>
-              <button data-command="LED_ON">LED ON</button>
-              <button data-command="LED_OFF" class="off">LED OFF</button>
+
+            <!-- insert divider-->
+            <hr />
+
+            <div class="control-group">
+              <div class="status-card" id="led-status">Light is On</div>
+              <button data-command="LED_ON">ON</button>
+              <button data-command="LED_OFF">OFF</button>
             </div>
-            <div>
-              <button data-command="BUZZER_ON">Buzzer ON</button>
-              <button data-command="BUZZER_OFF" class="off">Buzzer OFF</button>
+
+            <hr />
+
+            <div class="control-group">
+              <div class="status-card" id="buzzer-status">Alarm is Off</div>
+              <button data-command="BUZZER_ON">ON</button>
+              <button data-command="BUZZER_OFF">OFF</button>
             </div>
           </div>
         </div>

@@ -75,15 +75,15 @@ export function getDashboardChartContainer() {
 
 uiElements.currentActuator = document.getElementById("current-actuator");
 uiElements.currentActuatorSource = document.getElementById(
-  "current-actuator-source"
+  "current-actuator-mode"
 );
 
 const actuatorStatusCard = document.querySelector(".actuator-status");
 const actuatorStatus = document.getElementById("current-actuator");
-const actuatorSource = document.getElementById("current-actuator-source");
+const actuatorSource = document.getElementById("current-actuator-mode");
 
 // Funktion, die den Status ändert und die Animationen auslöst
-export function updateActuatorStatus(status, source) {
+export function updateActuatorStatus(status, mode) {
   //if status includes "LED" then set text to LED and then if status also includes "ON" then add turned on
   if (status.includes("LED")) {
     actuatorStatus.textContent = status.includes("ON")
@@ -100,7 +100,7 @@ export function updateActuatorStatus(status, source) {
       ? "Window Opened"
       : "Window Closed";
   }
-  actuatorSource.textContent = source;
+  actuatorSource.textContent = mode;
 
   // Animation aktivieren
   actuatorStatusCard.classList.add("active");
@@ -109,4 +109,24 @@ export function updateActuatorStatus(status, source) {
   setTimeout(() => {
     actuatorStatusCard.classList.remove("active");
   }, 1000); // Dauer der Animation
+}
+
+uiElements.servoStatus = document.getElementById("servo-status");
+uiElements.ledStatus = document.getElementById("led-status");
+uiElements.buzzerStatus = document.getElementById("buzzer-status");
+
+export function updateSingleActuatorCard(actuator, state) {
+  const element = uiElements[`${actuator.toLowerCase()}Status`];
+  if (!element) return;
+
+  if (actuator === "servo") {
+    element.textContent =
+      state === "OPEN" ? "Window is Open" : "Window is Closed";
+  }
+  if (actuator === "led") {
+    element.textContent = state === "ON" ? "Light is ON" : "Light is OFF";
+  }
+  if (actuator === "buzzer") {
+    element.textContent = state === "ON" ? "Alarm is ON" : "Alarm is OFF";
+  }
 }
