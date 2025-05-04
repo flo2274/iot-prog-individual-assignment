@@ -327,46 +327,6 @@ button.off:hover {
   color: #111827; /* Dunkler für die Labels */
 }
 
-/* Stile für die Override-Karten */
-.override-card {
-  text-align: center; /* Inhalt zentrieren */
-  padding: 1.2rem; /* Etwas weniger Padding als Standard-Card */
-  /* Standardmäßig keine besondere Umrandung */
-  border: 2px solid transparent; /* Unsichtbare Umrandung zur Platzhalterung */
-  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Sanfte Übergänge */
-}
-
-.override-card h3 {
-  margin-bottom: 0.5rem; /* Kleinerer Abstand zum Status */
-  font-size: 1.1rem;
-}
-
-.override-card .status {
-  font-weight: bold;
-  font-size: 1.1rem;
-  margin-top: 0.5rem;
-}
-
-/* Stil für aktive Override-Karten */
-.override-card.active {
-  border-color: #10b981; /* Grüner Rahmen */
-  /* background-color: #ecfdf5; /* Sehr helles Grün als Hintergrund (optional) */
-}
-
-.override-card.active .status {
-  color: #059669; /* Dunkleres Grün für den Text */
-}
-
-/* Stil für inaktive Override-Karten */
-.override-card.inactive {
-  border-color: #d1d5db; /* Grauer Rahmen */
-  /* background-color: #f9fafb; /* Sehr helles Grau als Hintergrund (optional) */
-}
-
-.override-card.inactive .status {
-  color: #6b7280; /* Grauer Text */
-}
-
 /* --- Ende Zusätzliche Styles für die System Routines Overview Page --- */
 /* Header */
 .site-header {
