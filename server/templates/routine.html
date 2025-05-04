@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>System Routinen Übersicht - Ihre Smart Home Steuerung</title>
+    <title>System Routines Overview - Your Smart Home Control</title>
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/style.css') }}"
@@ -26,93 +26,62 @@
     </header>
 
     <div class="container">
-      <h1>System Routinen Übersicht</h1>
+      <h1>System Routines Overview</h1>
       <section class="card-section">
-        <h2><i class="icon">📊</i> Automatik-Schwellenwerte</h2>
+        <h2><i class="icon">📊</i> Automation Thresholds</h2>
         <div class="card-grid">
           <div class="card threshold-card">
-            <h3>Licht (unter)</h3>
+            <h3>Light (below)</h3>
             <p class="value">3</p>
-            {# Entnommen aus LIGHT_THRESHOLD = 3 #}
+            {# Taken from LIGHT_THRESHOLD = 3 #}
           </div>
           <div class="card threshold-card">
-            <h3>Feuchtigkeit (unter)</h3>
+            <h3>Humidity (below)</h3>
             <p class="value">50</p>
-            {# Entnommen aus HUMIDITY_LOW_THRESHOLD = 50 #}
+            {# Taken from HUMIDITY_LOW_THRESHOLD = 50 #}
           </div>
           <div class="card threshold-card">
-            <h3>Feuchtigkeit (über)</h3>
+            <h3>Humidity (above)</h3>
             <p class="value">60</p>
-            {# Entnommen aus HUMIDITY_HIGH_THRESHOLD = 60 #}
+            {# Taken from HUMIDITY_HIGH_THRESHOLD = 60 #}
           </div>
           <div class="card threshold-card">
-            <h3>Temperatur (über)</h3>
+            <h3>Temperature (above)</h3>
             <p class="value">28</p>
-            {# Entnommen aus TEMPERATURE_HIGH_THRESHOLD = 28 #}
+            {# Taken from TEMPERATURE_HIGH_THRESHOLD = 28 #}
           </div>
         </div>
       </section>
 
       <section class="card-section">
-        <h2><i class="icon">🤖</i> Automatik-Logik</h2>
+        <h2><i class="icon">🤖</i> Automation Logic</h2>
         <div class="card-grid">
           <div class="card logic-card">
-            <h3>Gerät: LED</h3>
-            <p><strong>Bedingung:</strong> Lichtlevel ist unter 3 Lux</p>
-            {# Entnommen aus light < LIGHT_THRESHOLD #}
-            <p><strong>Aktion:</strong> LED einschalten, sonst ausschalten</p>
-            {# Entnommen aus led_state Logic #}
+            <h3>Device: LED</h3>
+            <p><strong>Condition:</strong> Light level is below 3 Lux</p>
+            {# Taken from light < LIGHT_THRESHOLD #}
+            <p><strong>Action:</strong> Turn on LED, otherwise turn off</p>
+            {# Taken from led_state Logic #}
           </div>
           <div class="card logic-card">
-            <h3>Gerät: Fenster</h3>
+            <h3>Device: Window</h3>
             <p>
-              <strong>Bedingung:</strong> Feuchtigkeit ist unter 50% oder über
-              60%
+              <strong>Condition:</strong> Humidity is below 50% or above 60%
             </p>
-            {# Entnommen aus hum < HUMIDITY_LOW_THRESHOLD or hum >
-            HUMIDITY_HIGH_THRESHOLD #}
-            <p><strong>Aktion:</strong> Fenster öffnen, sonst schließen</p>
-            {# Entnommen aus window_state Logic #}
+            <p><strong>Action:</strong> Open window, otherwise close it</p>
           </div>
           <div class="card logic-card">
-            <h3>Gerät: Buzzer</h3>
-            <p><strong>Bedingung:</strong> Temperatur ist über 28°C</p>
-            {# Entnommen aus temp > TEMPERATURE_HIGH_THRESHOLD #}
-            <p>
-              <strong>Aktion:</strong> Buzzer einschalten, sonst ausschalten
-            </p>
-            {# Entnommen aus buzzer_state Logic #}
+            <h3>Device: Buzzer</h3>
+            <p><strong>Condition:</strong> Temperature is above 28°C</p>
+            <p><strong>Action:</strong> Turn on buzzer, otherwise turn off</p>
           </div>
-        </div>
-      </section>
-
-      <section class="card-section">
-        <h2><i class="icon">✋</i> Manueller Override Status</h2>
-        <p>
-          Der Status unten zeigt den aktuellen Override-Status der Geräte an.
-        </p>
-        <div class="card-grid">
-          <div class="card override-card active">
-            <h3>LED</h3>
-            <p class="status">Active</p>
-          </div>
-          <div class="card override-card inactive">
-            <h3>Fenster</h3>
-            <p class="status">Inactive</p>
-          </div>
-          <div class="card override-card inactive">
-            <h3>Buzzer</h3>
-            <p class="status">Inactive</p>
-          </div>
-          {# Fügen Sie hier die tatsächlichen Override-Status basierend auf
-          Ihrer Logik ein #}
         </div>
       </section>
     </div>
 
     <footer class="site-footer">
       <div class="container">
-        <p>&copy; 2023 Ihr Firmenname. Alle Rechte vorbehalten.</p>
+        <p>&copy; 2023 IoT Smart Home Dashboard</p>
       </div>
     </footer>
   </body>

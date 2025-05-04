@@ -105,7 +105,7 @@ export function initializeCharts() {
     if (chartContainer) {
       displayError(
         chartContainer,
-        "Chart konnte nicht geladen werden (D3.js fehlt oder Container nicht gefunden).",
+        "Chart could not be loaded (D3.js missing or container not found).",
         "warning"
       );
     }
@@ -119,7 +119,7 @@ export function initializeCharts() {
     );
     displayError(
       chartContainer,
-      `Layout-Container ${config.ui.chartsFlexContainerSelector} nicht gefunden.`,
+      `Layout container ${config.ui.chartsFlexContainerSelector} not found.`,
       "error"
     );
     return false;
@@ -131,7 +131,7 @@ export function initializeCharts() {
     .style("gap", "10px");
 
   if (!setupChartDimensions()) {
-    displayError(chartContainer, "Chart Container nicht gefunden.", "error");
+    displayError(chartContainer, "Chart container not found.", "error");
     return false;
   }
 
@@ -214,7 +214,7 @@ export async function fetchInitialData() {
 
   try {
     console.log(
-      `Workspaceing last ${config.chart.maxDataPoints} history data points...`
+      `Fetching last ${config.chart.maxDataPoints} history data points...`
     );
     const response = await fetch(
       `${config.api.historyEndpoint}?limit=${config.chart.maxDataPoints}`
@@ -233,7 +233,7 @@ export async function fetchInitialData() {
       console.warn("Fetched empty or invalid initial history data.");
       displayError(
         flexContainer.node(),
-        "Keine Verlaufsdaten für Initial-Chart gefunden.",
+        "No historical data found for initial chart.",
         "warning"
       );
       updateCharts(null); // Draw empty charts
@@ -264,7 +264,7 @@ export async function fetchInitialData() {
     console.error("Error fetching initial history data:", error);
     displayError(
       flexContainer.node(),
-      `Fehler beim Laden der Initialdaten: ${error.message}`,
+      `Error loading initial data: ${error.message}`,
       "error"
     );
   }

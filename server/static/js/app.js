@@ -23,48 +23,37 @@ document.addEventListener("DOMContentLoaded", () => {
   if (isIndexPage) {
     console.log("App.js: Initializing index page modules.");
 
-    // 1. Initialize UI Updater elements (already done via import)
+    // 1. Initialize UI Updater elements (already handled via import)
 
-    // 2. Initialize Charts
+    // 2. Initialize charts
     const chartsInitialized = initializeCharts();
 
     // 3. Initialize Socket Manager
     const socket = socketManager.initialize();
 
     if (!socket) {
-      updateConnectionStatus("SocketIO Fehler", "Client nicht geladen.", true);
+      updateConnectionStatus("SocketIO Error", "Client not loaded.", true);
       return; // Stop initialization if socket failed
     }
 
     // 4. Setup Socket Event Listeners
     socketManager.on(config.socket.events.CONNECT, () => {
-      updateConnectionStatus("Verbunden", "Verbunden", false);
-      if (chartsInitialized) {
-        fetchInitialData(); // Fetch history data only after connection
-      }
+      updateConnectionStatus("Connected", "Connected", false);
     });
 
     socketManager.on(config.socket.events.DISCONNECT, () => {
-      updateConnectionStatus(
-        "Verbindung getrennt!",
-        "Verbindung getrennt!",
-        true
-      );
+      updateConnectionStatus("Connection lost!", "Connection lost!", true);
       resetLiveValues();
       // Optionally clear charts or show overlay
       // updateCharts(null); // Example to clear charts
     });
 
     socketManager.on(config.socket.events.CONNECT_ERROR, (err) => {
-      updateConnectionStatus(
-        "Verbindungsfehler",
-        `Fehler: ${err.message}`,
-        true
-      );
+      updateConnectionStatus("Connection error", `Error: ${err.message}`, true);
     });
 
     socketManager.on(config.socket.events.SENSOR_UPDATE, (data) => {
-      console.log("-> Sensor-Update received:", data);
+      console.log("-> Sensor update received:", data);
       Object.keys(config.chart.sensors).forEach((key) => {
         if (data[key] !== undefined) {
           updateLiveValue(key, data[key]);
@@ -79,9 +68,9 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log("Command response received:", data);
       showCommandFeedback(data);
 
-      // Update Aktuator-Anzeige
-      const actuatorName = data.command; // z. B. "LED_ON"
-      const mode = data.source || "button"; // Default: button
+      // Update actuator display
+      const actuatorName = data.command; // e.g., "LED_ON"
+      const mode = data.mode;
       updateActuatorStatus(actuatorName, mode);
 
       if (actuatorName.startsWith("LED")) {
@@ -102,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // 5. Setup Control Button Listeners
+    // 5. Setup control button listeners
     const controlButtons = document.querySelectorAll(
       config.ui.controlButtonSelector
     );
@@ -125,20 +114,3 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 });
-
-function animateCard(cardElement, status) {
-  const successClass = "flash-success";
-  const errorClass = "flash-error";
-
-  cardElement.classList.remove(successClass, errorClass);
-
-  if (status === "success") {
-    cardElement.classList.add(successClass);
-  } else {
-    cardElement.classList.add(errorClass);
-  }
-
-  setTimeout(() => {
-    cardElement.classList.remove(successClass, errorClass);
-  }, 800);
-}

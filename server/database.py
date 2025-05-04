@@ -50,7 +50,7 @@ def insert_sensor_data(temperature, humidity, light_level):
             connection.close() # Verbindung immer schließen
             # print("Database connection closed") # Debugging
 
-def get_historical_data(limit=100):
+def get_historical_data(limit=500):
     """Holt die letzten 'limit' Sensordaten-Einträge aus der Datenbank."""
     connection = get_db_connection()
     if connection is None:

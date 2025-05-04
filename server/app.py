@@ -137,7 +137,7 @@ def handle_command(data):
             try:
                 with serial_lock:
                     ser.write(f"{command}\n".encode('utf-8'))
-                emit('command_response', {'status': 'success', 'command': command})
+                emit('command_response', {'status': 'success', 'command': command, 'mode': 'hand-mode'})
                 if command in ['LED_ON', 'LED_OFF']:
                     set_manual_override('LED')
                 elif command in ['WINDOW_OPEN', 'WINDOW_CLOSE']:
@@ -211,7 +211,7 @@ def send_command_to_arduino(command):
             socketio.emit('command_response', {
                 'command': command,
                 'status': 'success',
-                'source': 'routine'
+                'mode': 'auto-mode'
             })
 
         except Exception as e:
@@ -221,7 +221,7 @@ def send_command_to_arduino(command):
                 'command': command,
                 'status': 'error',
                 'message': str(e),
-                'source': 'routine'
+                'mode': 'auto-mode'
             })
 
 if __name__ == '__main__':

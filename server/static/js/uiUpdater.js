@@ -82,33 +82,32 @@ const actuatorStatusCard = document.querySelector(".actuator-status");
 const actuatorStatus = document.getElementById("current-actuator");
 const actuatorSource = document.getElementById("current-actuator-mode");
 
-// Funktion, die den Status ändert und die Animationen auslöst
+// Function that updates the status and triggers animations
 export function updateActuatorStatus(status, mode) {
-  //if status includes "LED" then set text to LED and then if status also includes "ON" then add turned on
   if (status.includes("LED")) {
     actuatorStatus.textContent = status.includes("ON")
-      ? "LED eingeschaltet"
-      : "LED ausgeschaltet";
+      ? "LED turned on"
+      : "LED turned off";
   }
   if (status.includes("BUZZER")) {
     actuatorStatus.textContent = status.includes("ON")
-      ? "Buzzer eingeschaltet"
-      : "Buzzer ausgeschaltet";
+      ? "Buzzer turned on"
+      : "Buzzer turned off";
   }
   if (status.includes("SERVO")) {
     actuatorStatus.textContent = status.includes("OPEN")
-      ? "Window Opened"
-      : "Window Closed";
+      ? "Window opened"
+      : "Window closed";
   }
   actuatorSource.textContent = mode;
 
-  // Animation aktivieren
+  // Activate animation
   actuatorStatusCard.classList.add("active");
 
-  // Nach einer Sekunde Animation entfernen (optional)
+  // Remove animation after one second (optional)
   setTimeout(() => {
     actuatorStatusCard.classList.remove("active");
-  }, 1000); // Dauer der Animation
+  }, 1000); // Animation duration
 }
 
 uiElements.servoStatus = document.getElementById("servo-status");
@@ -121,7 +120,7 @@ export function updateSingleActuatorCard(actuator, state) {
 
   if (actuator === "servo") {
     element.textContent =
-      state === "OPEN" ? "Window is Open" : "Window is Closed";
+      state === "OPEN" ? "Window is open" : "Window is closed";
   }
   if (actuator === "led") {
     element.textContent = state === "ON" ? "Light is ON" : "Light is OFF";

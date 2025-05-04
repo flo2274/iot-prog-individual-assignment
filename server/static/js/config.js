@@ -19,21 +19,21 @@ export const config = {
     updateDuration: 500, // ms for transitions
     sensors: {
       temperature: {
-        title: "Temperatur (°C)",
+        title: "Temperature (°C)",
         yDomain: [0, 40],
         color: "rgb(255, 99, 132)",
         elementId: "temperature",
         unit: "°C",
       },
       humidity: {
-        title: "Luftfeuchtigkeit (%)",
+        title: "Humidity (%)",
         yDomain: [0, 100],
         color: "rgb(54, 162, 235)",
         elementId: "humidity",
         unit: "%",
       },
       light_level: {
-        title: "Lichtlevel (%)",
+        title: "Light Level (%)",
         yDomain: [0, 100],
         color: "rgb(255, 205, 86)",
         elementId: "light",

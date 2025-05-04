@@ -9,16 +9,6 @@
       href="{{ url_for('static', filename='css/style.css') }}"
     />
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <style>
-      body {
-        font-family: sans-serif;
-        padding: 20px;
-      }
-      .chart-container {
-        max-width: 800px;
-        margin: auto;
-      }
-    </style>
   </head>
   <body>
     <header class="site-header">
@@ -35,11 +25,16 @@
         </nav>
       </div>
     </header>
-    <p><a href="/">Zurück zum Dashboard</a></p>
 
     <div class="chart-container">
       <div id="sensorHistoryChart"></div>
     </div>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; 2025 IoT Smart Home Dashboard</p>
+      </div>
+    </footer>
 
     <script
       src="{{ url_for('static', filename='js/historyChart.js') }}"

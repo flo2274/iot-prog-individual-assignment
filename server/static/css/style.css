@@ -673,3 +673,35 @@ button.off:hover {
   text-align: center;
   margin-right: 10px;
 }
+
+.chart-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+#sensorHistoryChart {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+#sensorHistoryChart svg {
+  background-color: #f9fafb;
+  border-radius: 0.75rem;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+#sensorHistoryChart svg:hover {
+  transform: scale(1.02);
+}
+
+#sensorHistoryChart .tooltip {
+  font-family: "Segoe UI", Roboto, sans-serif;
+  font-size: 0.75rem;
+  pointer-events: none;
+}
