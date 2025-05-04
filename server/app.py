@@ -58,6 +58,7 @@ def parse_arduino_string(data_string):
 
 def read_from_arduino():
     global ser
+    counter = 0  # Zähler hinzufügen
     while True:
         if ser is None or not ser.is_open:
             print("Serial port not available. Attempting reconnect...")
@@ -75,11 +76,16 @@ def read_from_arduino():
                     if temperature is not None and humidity is not None and light_level is not None:
                         print(f"Received: Temp={temperature}°C, Hum={humidity}%, Light={light_level}")
 
-                        try:
-                            database.insert_sensor_data(temperature, humidity, light_level)
-                            print("Data inserted into database.")
-                        except Exception as db_err:
-                            print(f"Database error: {db_err}")
+                        # Increment the counter
+                        counter += 1
+                        
+                        # Safe every 10th reading to the database
+                        if counter % 10 == 0:
+                            try:
+                                database.insert_sensor_data(temperature, humidity, light_level)
+                                print("Data inserted into database.")
+                            except Exception as db_err:
+                                print(f"Database error: {db_err}")
 
                         socketio.emit('sensor_update', {
                             'temperature': temperature,
