@@ -156,11 +156,19 @@ def handle_command(data):
         else:
             emit('command_response', {'status': 'error', 'message': 'Serial port not available', 'command': command})
 
-# --- Automatik-Schwellenwerte ---
-LIGHT_THRESHOLD = 20
-HUMIDITY_LOW_THRESHOLD = 40
-HUMIDITY_HIGH_THRESHOLD = 60
-TEMPERATURE_HIGH_THRESHOLD = 28
+LIGHT_THRESHOLD = int(os.getenv('LIGHT_THRESHOLD', 20))
+HUMIDITY_LOW_THRESHOLD = int(os.getenv('HUMIDITY_LOW_THRESHOLD', 50))
+HUMIDITY_HIGH_THRESHOLD = int(os.getenv('HUMIDITY_HIGH_THRESHOLD', 60))
+TEMPERATURE_HIGH_THRESHOLD = int(os.getenv('TEMPERATURE_HIGH_THRESHOLD', 28))
+
+@app.route('/api/config')
+def api_config():
+    return jsonify({
+        'LIGHT_THRESHOLD': LIGHT_THRESHOLD,
+        'HUMIDITY_LOW_THRESHOLD': HUMIDITY_LOW_THRESHOLD,
+        'HUMIDITY_HIGH_THRESHOLD': HUMIDITY_HIGH_THRESHOLD,
+        'TEMPERATURE_HIGH_THRESHOLD': TEMPERATURE_HIGH_THRESHOLD
+    })
 
 # --- Override-Flags ---
 manual_override = {'LED': False, 'SERVO': False, 'BUZZER': False}

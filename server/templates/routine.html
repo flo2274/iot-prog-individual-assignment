@@ -30,21 +30,21 @@
       <section class="card-section">
         <h2><i class="icon">📊</i> Automation Thresholds</h2>
         <div class="card-grid">
-          <div class="card threshold-card">
+          <div class="card threshold-card light-threshold">
             <h3>Light (below)</h3>
-            <p class="value">20</p>
+            <p class="value">X</p>
           </div>
-          <div class="card threshold-card">
+          <div class="card threshold-card humidity-low-threshold">
             <h3>Humidity (below)</h3>
-            <p class="value">50</p>
+            <p class="value">X</p>
           </div>
-          <div class="card threshold-card">
+          <div class="card threshold-card humidity-high-threshold">
             <h3>Humidity (above)</h3>
-            <p class="value">60</p>
+            <p class="value">X</p>
           </div>
-          <div class="card threshold-card">
+          <div class="card threshold-card temperature-high-threshold">
             <h3>Temperature (above)</h3>
-            <p class="value">28</p>
+            <p class="value">X</p>
           </div>
         </div>
       </section>
@@ -52,22 +52,32 @@
       <section class="card-section">
         <h2><i class="icon">🤖</i> Automation Logic</h2>
         <div class="card-grid">
-          <div class="card logic-card">
+          <div class="card logic-card led-logic">
             <h3>Device: LED</h3>
-            <p><strong>Condition:</strong> Light level is below 20 Lux</p>
-            <p><strong>Action:</strong> Turn on LED, otherwise turn off</p>
-          </div>
-          <div class="card logic-card">
-            <h3>Device: Window</h3>
-            <p>
-              <strong>Condition:</strong> Humidity is below 50% or above 60%
+            <p class="condition">
+              <strong>Condition:</strong> <span class="text">Loading...</span>
             </p>
-            <p><strong>Action:</strong> Open window, otherwise close it</p>
+            <p class="action">
+              <strong>Action:</strong> <span class="text">Loading...</span>
+            </p>
           </div>
-          <div class="card logic-card">
+          <div class="card logic-card window-logic">
+            <h3>Device: Window</h3>
+            <p class="condition">
+              <strong>Condition:</strong> <span class="text">Loading...</span>
+            </p>
+            <p class="action">
+              <strong>Action:</strong> <span class="text">Loading...</span>
+            </p>
+          </div>
+          <div class="card logic-card buzzer-logic">
             <h3>Device: Buzzer</h3>
-            <p><strong>Condition:</strong> Temperature is above 28°C</p>
-            <p><strong>Action:</strong> Turn on buzzer, otherwise turn off</p>
+            <p class="condition">
+              <strong>Condition:</strong> <span class="text">Loading...</span>
+            </p>
+            <p class="action">
+              <strong>Action:</strong> <span class="text">Loading...</span>
+            </p>
           </div>
         </div>
       </section>
@@ -78,5 +88,6 @@
         <p>&copy; 2023 IoT Smart Home Dashboard</p>
       </div>
     </footer>
+    <script src="{{ url_for('static', filename='js/routineValueHelper.js') }}"></script>
   </body>
 </html>
