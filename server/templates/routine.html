@@ -32,20 +32,22 @@
         <div class="card-grid">
           <div class="card threshold-card light-threshold">
             <h3>Light (below)</h3>
-            <p class="value">X</p>
+            <input type="number" class="value" />
           </div>
           <div class="card threshold-card humidity-low-threshold">
             <h3>Humidity (below)</h3>
-            <p class="value">X</p>
+            <input type="number" class="value" />
           </div>
           <div class="card threshold-card humidity-high-threshold">
             <h3>Humidity (above)</h3>
-            <p class="value">X</p>
+            <input type="number" class="value" />
           </div>
           <div class="card threshold-card temperature-high-threshold">
             <h3>Temperature (above)</h3>
-            <p class="value">X</p>
+            <input type="number" class="value" />
           </div>
+
+          <button id="save-thresholds">Save</button>
         </div>
       </section>
 
@@ -62,7 +64,7 @@
             </p>
           </div>
           <div class="card logic-card window-logic">
-            <h3>Device: Window</h3>
+            <h3>Device: Servo</h3>
             <p class="condition">
               <strong>Condition:</strong> <span class="text">Loading...</span>
             </p>

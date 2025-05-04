@@ -3,3 +3,4 @@ Flask-SocketIO>=5.0     # Echtzeit-WebSockets
 python-dotenv>=0.19     # Zum Laden der .env Datei
 pyserial>=3.5           # Für die serielle Kommunikation
 PyMySQL>=1.0            # MySQL Datenbank-Connector
+json

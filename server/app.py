@@ -3,10 +3,11 @@ import serial
 import threading
 import time
 import re
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 from flask_socketio import SocketIO, emit
 from dotenv import load_dotenv
 import database  # Importiert das database.py Modul
+import json
 
 # Laden der Umgebungsvariablen aus der .env Datei
 load_dotenv()
@@ -156,19 +157,26 @@ def handle_command(data):
         else:
             emit('command_response', {'status': 'error', 'message': 'Serial port not available', 'command': command})
 
-LIGHT_THRESHOLD = int(os.getenv('LIGHT_THRESHOLD', 20))
-HUMIDITY_LOW_THRESHOLD = int(os.getenv('HUMIDITY_LOW_THRESHOLD', 50))
-HUMIDITY_HIGH_THRESHOLD = int(os.getenv('HUMIDITY_HIGH_THRESHOLD', 60))
-TEMPERATURE_HIGH_THRESHOLD = int(os.getenv('TEMPERATURE_HIGH_THRESHOLD', 28))
+THRESHOLDS_FILE = os.path.join(os.path.dirname(__file__), 'thresholds.json')
+
+def load_thresholds():
+    with open(THRESHOLDS_FILE, 'r') as f:
+        return json.load(f)
+
+def save_thresholds(thresholds):
+    with open(THRESHOLDS_FILE, 'w') as f:
+        json.dump(thresholds, f)
 
 @app.route('/api/config')
 def api_config():
-    return jsonify({
-        'LIGHT_THRESHOLD': LIGHT_THRESHOLD,
-        'HUMIDITY_LOW_THRESHOLD': HUMIDITY_LOW_THRESHOLD,
-        'HUMIDITY_HIGH_THRESHOLD': HUMIDITY_HIGH_THRESHOLD,
-        'TEMPERATURE_HIGH_THRESHOLD': TEMPERATURE_HIGH_THRESHOLD
-    })
+    thresholds = load_thresholds()
+    return jsonify(thresholds)
+
+@app.route('/api/config', methods=['POST'])
+def update_config():
+    data = request.json
+    save_thresholds(data)
+    return jsonify({"status": "success"})
 
 # --- Override-Flags ---
 manual_override = {'LED': False, 'SERVO': False, 'BUZZER': False}
@@ -195,6 +203,12 @@ last_states = {
 }
 
 def handle_automatic_actions(temp, hum, light):
+    thresholds = load_thresholds()
+    LIGHT_THRESHOLD = thresholds['LIGHT_THRESHOLD']
+    HUMIDITY_LOW_THRESHOLD = thresholds['HUMIDITY_LOW_THRESHOLD']
+    HUMIDITY_HIGH_THRESHOLD = thresholds['HUMIDITY_HIGH_THRESHOLD']
+    TEMPERATURE_HIGH_THRESHOLD = thresholds['TEMPERATURE_HIGH_THRESHOLD']
+
     # LED Steuerung
     led_state = 'LED_ON' if light < LIGHT_THRESHOLD else 'LED_OFF'
     if not manual_override['LED'] and led_state != last_states['LED']:
