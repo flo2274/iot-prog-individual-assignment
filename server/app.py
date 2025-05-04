@@ -146,8 +146,8 @@ def handle_command(data):
                 emit('command_response', {'status': 'success', 'command': command, 'mode': 'hand-mode'})
                 if command in ['LED_ON', 'LED_OFF']:
                     set_manual_override('LED')
-                elif command in ['WINDOW_OPEN', 'WINDOW_CLOSE']:
-                    set_manual_override('WINDOW')
+                elif command in ['SERVO_OPEN', 'SERVO_CLOSE']:
+                    set_manual_override('SERVO')
                 elif command in ['BUZZER_ON', 'BUZZER_OFF']:
                     set_manual_override('BUZZER')
             except Exception as e:
@@ -157,13 +157,13 @@ def handle_command(data):
             emit('command_response', {'status': 'error', 'message': 'Serial port not available', 'command': command})
 
 # --- Automatik-Schwellenwerte ---
-LIGHT_THRESHOLD = 3
-HUMIDITY_LOW_THRESHOLD = 50
+LIGHT_THRESHOLD = 20
+HUMIDITY_LOW_THRESHOLD = 40
 HUMIDITY_HIGH_THRESHOLD = 60
 TEMPERATURE_HIGH_THRESHOLD = 28
 
 # --- Override-Flags ---
-manual_override = {'LED': False, 'WINDOW': False, 'BUZZER': False}
+manual_override = {'LED': False, 'SERVO': False, 'BUZZER': False}
 override_timers = {}
 
 def set_manual_override(device, duration=600):
@@ -182,7 +182,7 @@ def reset_manual_override(device):
 # --- Zustandstracking für Automatik ---
 last_states = {
     'LED': None,
-    'WINDOW': None,
+    'SERVO': None,
     'BUZZER': None
 }
 
@@ -193,11 +193,11 @@ def handle_automatic_actions(temp, hum, light):
         send_command_to_arduino(led_state)
         last_states['LED'] = led_state
 
-    # WINDOW Steuerung
-    window_state = 'WINDOW_OPEN' if hum < HUMIDITY_LOW_THRESHOLD or hum > HUMIDITY_HIGH_THRESHOLD else 'WINDOW_CLOSE'
-    if not manual_override['WINDOW'] and window_state != last_states['WINDOW']:
-        send_command_to_arduino(window_state)
-        last_states['WINDOW'] = window_state
+    # SERVO Steuerung
+    servo_state = 'SERVO_OPEN' if hum < HUMIDITY_LOW_THRESHOLD or hum > HUMIDITY_HIGH_THRESHOLD else 'SERVO_CLOSE'
+    if not manual_override['SERVO'] and servo_state != last_states['SERVO']:
+        send_command_to_arduino(servo_state)
+        last_states['SERVO'] = servo_state
 
     # BUZZER Steuerung
     buzzer_state = 'BUZZER_ON' if temp > TEMPERATURE_HIGH_THRESHOLD else 'BUZZER_OFF'

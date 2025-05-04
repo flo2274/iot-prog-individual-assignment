@@ -37,6 +37,8 @@ void loop() {
   float hum = dht.readHumidity();
   int lightLevel = analogRead(lightSensorPin);
 
+  int mappedLevel = map(lightLevel, 0, 50, 0, 100);
+
   if (isnan(temp) || isnan(hum)) {
     Serial.println("ERROR");
     // Optional: Handle this error more gracefully if needed
@@ -50,7 +52,7 @@ void loop() {
   Serial.print(" HUM:");
   Serial.print(hum);
   Serial.print(" LIGHT:");
-  Serial.println(lightLevel);
+  Serial.println(mappedLevel);
 
   // Listen for commands from Mac
   if (Serial.available() > 0) {
