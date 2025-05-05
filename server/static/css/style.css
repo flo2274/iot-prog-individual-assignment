@@ -69,7 +69,7 @@ h2 {
 .dashboard-grid-layout {
   display: grid;
   grid-template-columns: 1.3fr 1.4fr;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .card {
@@ -125,31 +125,8 @@ button:hover {
   background-color: #1e40af;
 }
 
-button.off {
-  background-color: #00779e;
-}
-
-button.off:hover {
-  background-color: #01597c;
-}
-
 .mt-small {
   margin-top: 1.5rem;
-}
-
-.history-link {
-  text-align: center;
-  margin-top: 2rem;
-}
-
-.history-link a {
-  text-decoration: none;
-  color: #2563eb;
-  font-weight: 500;
-}
-
-.history-link a:hover {
-  text-decoration: underline;
 }
 
 /* Neuer Flex-Container für Charts */
@@ -175,15 +152,6 @@ button.off:hover {
   font-weight: 600;
   margin-bottom: 0.5rem;
   color: #374151;
-}
-
-/* Grundstil für die Card */
-.card.actuator-status {
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card.actuator-status.active {
@@ -288,7 +256,7 @@ button.off:hover {
 }
 
 .threshold-card input.value:focus {
-  border-color: #007bff;
+  border-color: #2563eb;
   box-shadow: 0 0 6px rgba(0, 123, 255, 0.5);
   outline: none;
 }
@@ -299,7 +267,7 @@ button.off:hover {
   justify-self: center;
   padding: 12px 24px;
   font-size: 1rem;
-  background-color: #007bff;
+  background-color: #2563eb;
   color: white;
   border: none;
   border-radius: 10px;
@@ -651,7 +619,7 @@ button:hover {
 
 .chart-container {
   max-width: 1200px;
-  margin: 2rem auto;
+  margin: 30px;
   padding: 1.5rem;
   background-color: #ffffff;
   border-radius: 1rem;
