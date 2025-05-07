@@ -16,7 +16,7 @@ export const config = {
     maxDataPoints: 50,
     margin: { top: 10, right: 20, bottom: 20, left: 30 },
     height: 150,
-    updateDuration: 500, // ms for transitions
+    updateDuration: 500,
     sensors: {
       temperature: {
         title: "Temperature (°C)",

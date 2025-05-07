@@ -58,10 +58,9 @@ export function showCommandFeedback(data) {
     message = `Command '${data.command}' Status: Error${
       data.message ? ` - ${data.message}` : ""
     }`;
-    alert(message); // Show errors prominently
+    alert(message);
   } else {
-    console.log(message); // Log success to console
-    // Optionally: Show temporary success message in UI
+    console.log(message);
   }
 }
 
@@ -82,7 +81,6 @@ const actuatorStatusCard = document.querySelector(".actuator-status");
 const actuatorStatus = document.getElementById("current-actuator");
 const actuatorSource = document.getElementById("current-actuator-mode");
 
-// Function that updates the status and triggers animations
 export function updateActuatorStatus(status, mode) {
   if (status.includes("LED")) {
     actuatorStatus.textContent = status.includes("ON")
@@ -101,13 +99,11 @@ export function updateActuatorStatus(status, mode) {
   }
   actuatorSource.textContent = mode;
 
-  // Activate animation
   actuatorStatusCard.classList.add("active");
 
-  // Remove animation after one second (optional)
   setTimeout(() => {
     actuatorStatusCard.classList.remove("active");
-  }, 1000); // Animation duration
+  }, 1000);
 }
 
 uiElements.servoStatus = document.getElementById("servo-status");

@@ -3,7 +3,6 @@ import { displayError } from "./uiUpdater.js";
 
 export async function initializeHistoryChartD3() {
   const container = document.getElementById("sensorHistoryChart");
-
   if (!container) {
     console.error("Chart container 'sensorHistoryChart' not found.");
     return false;
@@ -39,19 +38,17 @@ export async function initializeHistoryChartD3() {
 
     const margin = { top: 20, right: 60, bottom: 50, left: 60 };
     const width = container.clientWidth - margin.left - margin.right;
-    const height = 300; // height per chart
+    const height = 300;
 
-    // Hier definieren wir explizit die Schlüssel, die wir erwarten
     const sensorKeys = ["temperature", "light_level", "humidity"];
 
-    // Sicherstellen, dass alle Sensordaten vorhanden sind und in der Konfiguration korrekt abgeglichen werden
     const series = sensorKeys
       .map((key) => {
         const sensorConfig = config.chart.sensors[key];
         const data = historyData
           .map((d) => {
             const date = new Date(d.created_at);
-            const value = d[key]; // Direkt auf den Schlüssel zugreifen
+            const value = d[key];
             return value !== undefined &&
               !isNaN(date.getTime()) &&
               !isNaN(value)
@@ -65,7 +62,7 @@ export async function initializeHistoryChartD3() {
           label:
             sensorConfig && sensorConfig.label !== undefined
               ? sensorConfig.label
-              : key, // <-- Geänderte Zeile
+              : key,
           unit: sensorConfig ? sensorConfig.unit : "",
           color: sensorConfig ? sensorConfig.color : "gray",
           data,
@@ -100,7 +97,7 @@ export async function initializeHistoryChartD3() {
         .append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
 
-      // X axis (only on bottom chart)
+      // X axis
       if (idx === series.length - 1) {
         svg
           .append("g")
@@ -126,7 +123,6 @@ export async function initializeHistoryChartD3() {
           .remove();
       }
 
-      // Y axis
       svg.append("g").call(d3.axisLeft(y));
       svg
         .append("text")
@@ -137,7 +133,6 @@ export async function initializeHistoryChartD3() {
         .style("fill", "black")
         .text(`${s.label} (${s.unit})`);
 
-      // Line
       const line = d3
         .line()
         .x((d) => x(d.date))

@@ -1,14 +1,14 @@
--- Löscht die Tabelle, falls sie bereits existiert (für Entwicklungszwecke)
+-- Drop table if it exists (for development/testing)
 DROP TABLE IF EXISTS sensor_data;
 
--- Erstellt die Tabelle zur Speicherung der Sensordaten
+-- Create table to store sensor data
 CREATE TABLE sensor_data (
-    id INT AUTO_INCREMENT PRIMARY KEY,          -- Eindeutige ID für jeden Eintrag
-    temperature FLOAT,                          -- Temperaturwert (z.B. 23.5)
-    humidity FLOAT,                             -- Luftfeuchtigkeitswert (z.B. 45.8)
-    light_level INT,                            -- Lichtlevel (z.B. 0-1023)
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- Zeitstempel der Messung
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    temperature FLOAT,
+    humidity FLOAT,
+    light_level INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP  -- Timestamp of the measurement
 );
 
--- Optional: Index zur schnelleren Abfrage nach Zeitstempel
+-- Optional index for faster queries by timestamp
 CREATE INDEX idx_created_at ON sensor_data (created_at);

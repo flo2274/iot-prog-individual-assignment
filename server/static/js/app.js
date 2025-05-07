@@ -23,20 +23,17 @@ document.addEventListener("DOMContentLoaded", () => {
   if (isIndexPage) {
     console.log("App.js: Initializing index page modules.");
 
-    // 1. Initialize UI Updater elements (already handled via import)
-
-    // 2. Initialize charts
+    // init charts
     const chartsInitialized = initializeCharts();
 
-    // 3. Initialize Socket Manager
+    // init socket
     const socket = socketManager.initialize();
-
     if (!socket) {
       updateConnectionStatus("SocketIO Error", "Client not loaded.", true);
-      return; // Stop initialization if socket failed
+      return;
     }
 
-    // 4. Setup Socket Event Listeners
+    // socket events
     socketManager.on(config.socket.events.CONNECT, () => {
       updateConnectionStatus("Connected", "Connected", false);
     });
@@ -44,8 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
     socketManager.on(config.socket.events.DISCONNECT, () => {
       updateConnectionStatus("Connection lost!", "Connection lost!", true);
       resetLiveValues();
-      // Optionally clear charts or show overlay
-      // updateCharts(null); // Example to clear charts
     });
 
     socketManager.on(config.socket.events.CONNECT_ERROR, (err) => {
@@ -68,8 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log("Command response received:", data);
       showCommandFeedback(data);
 
-      // Update actuator display
-      const actuatorName = data.command; // e.g., "LED_ON"
+      const actuatorName = data.command;
       const mode = data.mode;
       updateActuatorStatus(actuatorName, mode);
 
@@ -91,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // 5. Setup control button listeners
+    // control buttons
     const controlButtons = document.querySelectorAll(
       config.ui.controlButtonSelector
     );

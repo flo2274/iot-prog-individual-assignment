@@ -6,23 +6,23 @@ import re
 from flask import Flask, render_template, jsonify, request
 from flask_socketio import SocketIO, emit
 from dotenv import load_dotenv
-import database  # Importiert das database.py Modul
+import database
 import json
 
-# Laden der Umgebungsvariablen aus der .env Datei
+# Load environment variables
 load_dotenv()
 
-# --- Konfiguration ---
-SERIAL_PORT = os.getenv('SERIAL_PORT', '/dev/tty.usbmodem11301')  # Standardwert
+# --- Config ---
+SERIAL_PORT = os.getenv('SERIAL_PORT', '/dev/tty.usbmodem11301')
 BAUD_RATE = int(os.getenv('BAUD_RATE', 9600))
 DATABASE_NAME = os.getenv('DB_NAME', 'iot_project')
 
-# --- Flask & SocketIO Initialisierung ---
+# --- Flask & SocketIO ---
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'a_very_secret_key')
 socketio = SocketIO(app, async_mode='threading')
 
-# --- Serielle Verbindung ---
+# --- Serial Setup ---
 ser = None
 serial_lock = threading.Lock()
 
@@ -59,7 +59,7 @@ def parse_arduino_string(data_string):
 
 def read_from_arduino():
     global ser
-    counter = 0  # Zähler hinzufügen
+    counter = 0
     while True:
         if ser is None or not ser.is_open:
             print("Serial port not available. Attempting reconnect...")
@@ -76,11 +76,7 @@ def read_from_arduino():
                     temperature, humidity, light_level = parse_arduino_string(line)
                     if temperature is not None and humidity is not None and light_level is not None:
                         print(f"Received: Temp={temperature}°C, Hum={humidity}%, Light={light_level}")
-
-                        # Increment the counter
                         counter += 1
-                        
-                        # Safe every 10th reading to the database
                         if counter % 10 == 0:
                             try:
                                 database.insert_sensor_data(temperature, humidity, light_level)
@@ -178,7 +174,7 @@ def update_config():
     save_thresholds(data)
     return jsonify({"status": "success"})
 
-# --- Override-Flags ---
+# --- Manual override flags ---
 manual_override = {'LED': False, 'SERVO': False, 'BUZZER': False}
 override_timers = {}
 
@@ -195,7 +191,7 @@ def reset_manual_override(device):
     manual_override[device] = False
     print(f"Manual override expired for {device}")
 
-# --- Zustandstracking für Automatik ---
+# --- Last known states ---
 last_states = {
     'LED': None,
     'SERVO': None,
@@ -209,19 +205,16 @@ def handle_automatic_actions(temp, hum, light):
     HUMIDITY_HIGH_THRESHOLD = thresholds['HUMIDITY_HIGH_THRESHOLD']
     TEMPERATURE_HIGH_THRESHOLD = thresholds['TEMPERATURE_HIGH_THRESHOLD']
 
-    # LED Steuerung
     led_state = 'LED_ON' if light < LIGHT_THRESHOLD else 'LED_OFF'
     if not manual_override['LED'] and led_state != last_states['LED']:
         send_command_to_arduino(led_state)
         last_states['LED'] = led_state
 
-    # SERVO Steuerung
     servo_state = 'SERVO_OPEN' if hum < HUMIDITY_LOW_THRESHOLD or hum > HUMIDITY_HIGH_THRESHOLD else 'SERVO_CLOSE'
     if not manual_override['SERVO'] and servo_state != last_states['SERVO']:
         send_command_to_arduino(servo_state)
         last_states['SERVO'] = servo_state
 
-    # BUZZER Steuerung
     buzzer_state = 'BUZZER_ON' if temp > TEMPERATURE_HIGH_THRESHOLD else 'BUZZER_OFF'
     if not manual_override['BUZZER'] and buzzer_state != last_states['BUZZER']:
         send_command_to_arduino(buzzer_state)
@@ -234,17 +227,13 @@ def send_command_to_arduino(command):
             with serial_lock:
                 ser.write(f"{command}\n".encode('utf-8'))
             print(f"Auto command sent: {command}")
-
-            # Sende Erfolgsmeldung an den Client
             socketio.emit('command_response', {
                 'command': command,
                 'status': 'success',
                 'mode': 'auto-mode'
             })
-
         except Exception as e:
             print(f"Error sending AUTO command '{command}': {e}")
-            # Sende Fehlermeldung an den Client
             socketio.emit('command_response', {
                 'command': command,
                 'status': 'error',

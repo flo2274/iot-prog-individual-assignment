@@ -1,8 +1,7 @@
-/* Header */
 .site-header {
   background-color: white;
   color: #111827;
-  padding: 0.5rem 0; /* reduziert Höhe */
+  padding: 0.5rem 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
@@ -14,7 +13,7 @@
 
 .site-logo {
   height: 10;
-  max-width: 200px; /* verhindert Überlauf bei kleineren Bildschirmen */
+  max-width: 200px;
   object-fit: contain;
 }
 
@@ -30,7 +29,6 @@
   text-decoration: underline;
 }
 
-/* Footer */
 .site-footer {
   background-color: white;
   color: #111827;
@@ -86,15 +84,15 @@ h2 {
 
 .top-row {
   display: flex;
-  gap: 1rem; /* Abstand zwischen den Cards */
+  gap: 1rem;
 }
 
 .top-row .card {
-  flex: 1; /* beide Cards gleich breit */
+  flex: 1;
 }
 
 .card.controls {
-  margin-top: 1rem; /* Abstand nach den oberen zwei Cards */
+  margin-top: 1rem;
 }
 
 .sensor-value {
@@ -129,7 +127,6 @@ button:hover {
   margin-top: 1.5rem;
 }
 
-/* Neuer Flex-Container für Charts */
 .charts-flex-container {
   display: flex;
   flex-wrap: wrap;
@@ -137,9 +134,8 @@ button:hover {
   justify-content: space-between;
 }
 
-/* Einzelne Chart-Boxen */
 .dashboard-chart {
-  flex: 1 1 calc(33% - 1rem); /* drei Charts nebeneinander, mit Platz dazwischen */
+  flex: 1 1 calc(33% - 1rem);
   min-width: 200px;
   background-color: #f9fafb;
   padding: 0.5rem;
@@ -174,7 +170,6 @@ button:hover {
   color: gray;
 }
 
-/* Leuchteffekt */
 @keyframes glow {
   0% {
     box-shadow: 0 0 5px #ffcc00, 0 0 10px #ffcc00, 0 0 15px #ffcc00;
@@ -186,7 +181,6 @@ button:hover {
   }
 }
 
-/* Wackel-Animation */
 @keyframes shake {
   0% {
     transform: translateX(0);
@@ -205,33 +199,27 @@ button:hover {
   }
 }
 
-/* --- Zusätzliche Styles für die System Routines Overview Page (basierend auf bereitgestellter HTML) --- */
-
-/* Abstand zwischen den Abschnitten wie "Automatik-Schwellenwerte" */
 .card-section {
-  margin-top: 2.5rem; /* Mehr Abstand über einem neuen Abschnitt */
+  margin-top: 2.5rem;
 }
 
 .card-section h2 {
-  margin-bottom: 1.2rem; /* Abstand unter dem Titel des Abschnitts */
-  display: flex; /* Erlaubt das Icon neben dem Text */
+  margin-bottom: 1.2rem;
+  display: flex;
   align-items: center;
 }
 
-/* Stil für die Text-Icons neben den Abschnittstiteln */
 .card-section h2 .icon {
-  margin-right: 0.75rem; /* Abstand zwischen Icon und Text */
-  font-size: 1.8rem; /* Größeres Icon */
-  color: #2563eb; /* Farbe anpassen, falls gewünscht */
+  margin-right: 0.75rem;
+  font-size: 1.8rem;
+  color: #2563eb;
 }
 
-/* Grid-Layout für die Karten innerhalb jedes Abschnitts */
 .card-grid {
   display: grid;
-  /* Eine responsive Grid-Vorlage: erstellt Spalten, die sich automatisch anpassen.
-     Jede Spalte ist mindestens 220px breit, aber nicht breiter als 1fr (gleicher Teil des verfügbaren Platzes). */
+
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem; /* Abstand zwischen den Karten im Grid */
+  gap: 1.5rem;
 }
 
 .threshold-card:hover {
@@ -261,7 +249,6 @@ button:hover {
   outline: none;
 }
 
-/* Save button styles */
 #save-thresholds {
   grid-column: 1 / -1;
   justify-self: center;
@@ -286,49 +273,21 @@ button:hover {
 }
 
 .logic-card p {
-  margin-bottom: 0.5rem; /* Abstand zwischen den Logik-Zeilen */
-  line-height: 1.4; /* Bessere Lesbarkeit */
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
   color: #374151;
 }
 
 .logic-card p strong {
-  color: #111827; /* Dunkler für die Labels */
-}
-
-/* --- Ende Zusätzliche Styles für die System Routines Overview Page --- */
-/* Header */
-.site-header {
-  background-color: white;
   color: #111827;
-  padding: 0.5rem 0; /* reduziert Höhe */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.site-header .header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .site-logo {
   height: 10;
-  max-width: 200px; /* verhindert Überlauf bei kleineren Bildschirmen */
+  max-width: 200px;
   object-fit: contain;
 }
 
-.site-header nav a {
-  color: black;
-  margin-left: 1rem;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 1rem;
-}
-
-.site-header nav a:hover {
-  text-decoration: underline;
-}
-
-/* Footer */
 .site-footer {
   background-color: white;
   color: #111827;
@@ -394,7 +353,7 @@ h2 {
 }
 
 .card.controls {
-  margin-top: 1rem; /* Abstand nach den oberen zwei Cards */
+  margin-top: 1rem;
 }
 
 .sensor-value {
@@ -444,7 +403,6 @@ button:hover {
   text-decoration: underline;
 }
 
-/* Neuer Flex-Container für Charts */
 .charts-flex-container {
   display: flex;
   flex-wrap: wrap;
@@ -452,9 +410,8 @@ button:hover {
   justify-content: space-between;
 }
 
-/* Einzelne Chart-Boxen */
 .dashboard-chart {
-  flex: 1 1 calc(33% - 1rem); /* drei Charts nebeneinander, mit Platz dazwischen */
+  flex: 1 1 calc(33% - 1rem);
   min-width: 200px;
   background-color: #f9fafb;
   padding: 0.5rem;
@@ -469,7 +426,6 @@ button:hover {
   color: #374151;
 }
 
-/* Grundstil für die Card */
 .card.actuator-status {
   padding: 20px;
   border-radius: 10px;
@@ -498,7 +454,6 @@ button:hover {
   color: gray;
 }
 
-/* Leuchteffekt */
 @keyframes glow {
   0% {
     box-shadow: 0 0 5px #ffcc00, 0 0 10px #ffcc00, 0 0 15px #ffcc00;
@@ -510,7 +465,6 @@ button:hover {
   }
 }
 
-/* Wackel-Animation */
 @keyframes shake {
   0% {
     transform: translateX(0);
@@ -529,65 +483,55 @@ button:hover {
   }
 }
 
-/* --- Zusätzliche Styles für die System Routines Overview Page (basierend auf bereitgestellter HTML) --- */
-
-/* Abstand zwischen den Abschnitten wie "Automatik-Schwellenwerte" */
 .card-section {
-  margin-top: 2.5rem; /* Mehr Abstand über einem neuen Abschnitt */
+  margin-top: 2.5rem;
 }
 
 .card-section h2 {
-  margin-bottom: 1.2rem; /* Abstand unter dem Titel des Abschnitts */
-  display: flex; /* Erlaubt das Icon neben dem Text */
+  margin-bottom: 1.2rem;
+  display: flex;
   align-items: center;
 }
 
-/* Stil für die Text-Icons neben den Abschnittstiteln */
 .card-section h2 .icon {
-  margin-right: 0.75rem; /* Abstand zwischen Icon und Text */
-  font-size: 1.8rem; /* Größeres Icon */
-  color: #2563eb; /* Farbe anpassen, falls gewünscht */
+  margin-right: 0.75rem;
+  font-size: 1.8rem;
+  color: #2563eb;
 }
 
-/* Grid-Layout für die Karten innerhalb jedes Abschnitts */
 .card-grid {
   display: grid;
-  /* Eine responsive Grid-Vorlage: erstellt Spalten, die sich automatisch anpassen.
-     Jede Spalte ist mindestens 220px breit, aber nicht breiter als 1fr (gleicher Teil des verfügbaren Platzes). */
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem; /* Abstand zwischen den Karten im Grid */
+  gap: 1.5rem;
 }
 
-/* Spezifische Anpassungen für Kartentypen (nutzen den Basis-Card-Stil) */
 .threshold-card .value {
-  font-size: 2rem; /* Größerer Wert für Schwellenwerte */
+  font-size: 2rem;
   font-weight: bold;
   color: #2563eb;
   margin-top: 0.7rem;
-  text-align: center; /* Zentriert den Wert */
+  text-align: center;
 }
 
 .logic-card p {
-  margin-bottom: 0.5rem; /* Abstand zwischen den Logik-Zeilen */
-  line-height: 1.4; /* Bessere Lesbarkeit */
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
   color: #374151;
 }
 
 .logic-card p strong {
-  color: #111827; /* Dunkler für die Labels */
+  color: #111827;
 }
 
-/* Stile für die Override-Karten */
 .override-card {
-  text-align: center; /* Inhalt zentrieren */
-  padding: 1.2rem; /* Etwas weniger Padding als Standard-Card */
-  /* Standardmäßig keine besondere Umrandung */
-  border: 2px solid transparent; /* Unsichtbare Umrandung zur Platzhalterung */
-  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Sanfte Übergänge */
+  text-align: center;
+  padding: 1.2rem;
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .override-card h3 {
-  margin-bottom: 0.5rem; /* Kleinerer Abstand zum Status */
+  margin-bottom: 0.5rem;
   font-size: 1.1rem;
 }
 
@@ -597,7 +541,6 @@ button:hover {
   margin-top: 0.5rem;
 }
 
-/* --- Ende Zusätzliche Styles für die System Routines Overview Page --- */
 .control-group {
   display: flex;
   align-items: center;

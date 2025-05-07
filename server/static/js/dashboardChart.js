@@ -7,6 +7,7 @@ let chartContainer;
 let flexContainer;
 let chartWidth, innerChartWidth, innerChartHeight;
 
+// Calculate chart sizes
 function setupChartDimensions() {
   if (!chartContainer) return false;
 
@@ -14,11 +15,10 @@ function setupChartDimensions() {
   chartWidth =
     containerWidth / Object.keys(config.chart.sensors).length -
     config.chart.margin.left -
-    config.chart.margin.right - // Account for margins per chart
-    15; // Extra padding/gap adjustment
+    config.chart.margin.right -
+    15;
 
-  // Ensure minimum width
-  chartWidth = Math.max(chartWidth, 250); // Minimum sensible width
+  chartWidth = Math.max(chartWidth, 250);
 
   innerChartWidth =
     chartWidth - config.chart.margin.left - config.chart.margin.right;
@@ -27,6 +27,7 @@ function setupChartDimensions() {
   return true;
 }
 
+// Create single chart element
 function createSingleChart(sensorKey, sensorConfig) {
   const chartDiv = flexContainer
     .append("div")
@@ -96,12 +97,11 @@ function createSingleChart(sensorKey, sensorConfig) {
   };
 }
 
+// Init all charts
 export function initializeCharts() {
   chartContainer = document.getElementById(config.ui.dashboardChartContainerId);
   if (!chartContainer || typeof d3 === "undefined") {
-    console.warn(
-      "D3 or chart container not found. Skipping chart initialization."
-    );
+    console.warn("D3 or chart container not found.");
     if (chartContainer) {
       displayError(
         chartContainer,
@@ -141,33 +141,35 @@ export function initializeCharts() {
     chartInstances[key] = createSingleChart(key, sensorConfig);
   }
 
+  // Handle window resize
   window.addEventListener("resize", () => {
     if (setupChartDimensions()) {
       xScale.range([0, innerChartWidth]);
       Object.values(chartInstances).forEach((instance) => {
         instance.yScale.range([innerChartHeight, 0]);
         instance.gxAxis.attr("transform", `translate(0,${innerChartHeight})`);
-        instance.path.attr("d", instance.line); // Redraw immediately
+        instance.path.attr("d", instance.line);
       });
-      redrawAllCharts(false); // Redraw with transitions disabled
+      redrawAllCharts(false);
     }
   });
 
   return true;
 }
 
+// Redraw all charts
 function redrawAllCharts(useTransition = true) {
   const allData = Object.values(chartInstances).flatMap((inst) => inst.data);
   if (allData.length > 0) {
     xScale.domain(d3.extent(allData, (d) => d.date));
   } else {
-    xScale.domain([new Date(), new Date()]); // Default if no data
+    xScale.domain([new Date(), new Date()]);
   }
 
   for (const instance of Object.values(chartInstances)) {
     const transition = useTransition
       ? d3.transition().duration(config.chart.updateDuration)
-      : d3.transition().duration(0); // No duration for immediate redraw
+      : d3.transition().duration(0);
 
     instance.gxAxis.transition(transition).call(instance.xAxis);
     instance.gyAxis.transition(transition).call(instance.yAxis);
@@ -184,15 +186,16 @@ function redrawAllCharts(useTransition = true) {
   );
 }
 
+// Add or update chart data
 export function updateCharts(newDataPoint) {
-  if (!chartContainer || flexContainer.empty()) return; // Don't update if not initialized
+  if (!chartContainer || flexContainer.empty()) return;
 
   let dataAdded = false;
   if (newDataPoint) {
     const parsedDate = new Date(newDataPoint.created_at || Date.now());
 
     for (const [key, instance] of Object.entries(chartInstances)) {
-      const value = +newDataPoint[key]; // Use key directly (e.g., newDataPoint['temperature'])
+      const value = +newDataPoint[key];
       if (!isNaN(value)) {
         instance.data.push({ date: parsedDate, value: value });
         if (instance.data.length > config.chart.maxDataPoints) {
@@ -204,13 +207,13 @@ export function updateCharts(newDataPoint) {
   }
 
   if (dataAdded || !newDataPoint) {
-    // Redraw if data added OR if called with null (initial draw)
-    redrawAllCharts(true); // Use transitions for updates
+    redrawAllCharts(true);
   }
 }
 
+// Fetch initial chart data
 export async function fetchInitialData() {
-  if (!chartContainer || flexContainer.empty()) return; // Don't fetch if not initialized
+  if (!chartContainer || flexContainer.empty()) return;
 
   try {
     console.log(
@@ -236,7 +239,7 @@ export async function fetchInitialData() {
         "No historical data found for initial chart.",
         "warning"
       );
-      updateCharts(null); // Draw empty charts
+      updateCharts(null);
       return;
     }
 
@@ -248,18 +251,16 @@ export async function fetchInitialData() {
       for (const [key, instance] of Object.entries(chartInstances)) {
         const value = +d[key];
         if (!isNaN(value)) {
-          // Add to temporary structure, maintain order if needed
           processedData[key].push({ date, value });
         }
       }
     });
 
-    // Assign collected data to chart instances
     for (const [key, dataArray] of Object.entries(processedData)) {
-      chartInstances[key].data = dataArray.slice(-config.chart.maxDataPoints); // Ensure limit
+      chartInstances[key].data = dataArray.slice(-config.chart.maxDataPoints);
     }
 
-    updateCharts(null); // Initial draw with fetched data
+    updateCharts(null);
   } catch (error) {
     console.error("Error fetching initial history data:", error);
     displayError(
