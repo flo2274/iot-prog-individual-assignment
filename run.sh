@@ -1,18 +1,18 @@
 #!/bin/bash
 
-# Optional: Aktiviere eine virtuelle Umgebung, falls vorhanden
+# Optional: activate a virtual environment if available
 # source venv/bin/activate
 
-echo "Stelle sicher, dass die Datenbank läuft und das Schema (database/schema.sql) angewendet wurde."
-echo "Stelle sicher, dass der Arduino verbunden ist und auf dem Port aus .env läuft."
-echo "Starte den Python Backend Server (app.py)..."
+echo "Make sure the database is running and the schema (database/schema.sql) has been applied."
+echo "Make sure the Arduino is connected and running on the port from .env."
+echo "Starting the Python backend server (app.py)..."
 
-# Führe das Haupt-Python-Skript aus
-# Der Pfad muss relativ zum Ort sein, an dem das Skript ausgeführt wird,
-# oder man wechselt vorher ins Verzeichnis.
+# Run the main Python script
+# The path must be relative to the location where the script is executed,
+# or you can change into the directory first.
 python server/app.py
 
-# Optional: Deaktiviere die virtuelle Umgebung beim Beenden
+# Optional: deactivate the virtual environment on exit
 # deactivate
 
-echo "Server wurde beendet."
+echo "Server has been stopped."
